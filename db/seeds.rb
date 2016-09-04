@@ -7,48 +7,65 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
+# Number of employees for each employment_status
+workgroup_number = 30
+
 # Create CC list
-cc_bid_number = 1
-3.times do
+shift_array = (1..100).to_a
+bid_number = 1
+seniority = Faker::Date.between(50.years.ago, 40.years.ago)
+workgroup_number.times do
+  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "CC",
-    bid_number:             cc_bid_number,
+    bid_number:             bid_number,
     first_name:             Faker::Name.first_name,
     last_name:              Faker::Name.last_name,
-    seniority:              Faker::Date.between(50.years.ago, 2.months.ago),
-    shift:                  Faker::Number.between(1,100)
+    seniority:              seniority,
+    shift:                  random_shift
   )
-  cc_bid_number += 1
+  bid_number += 1
+  random_amount = Faker::Date.between(3.years, 1.day)
+  seniority += random_amount
 end
 
 # Create FT list
-ft_bid_number = 1
-3.times do
+shift_array = (1..400).to_a
+bid_number = 1
+seniority = Faker::Date.between(50.years.ago, 40.years.ago)
+workgroup_number.times do
+  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "FT",
-    bid_number:             ft_bid_number,
+    bid_number:             bid_number,
     first_name:             Faker::Name.first_name,
     last_name:              Faker::Name.last_name,
-    seniority:              Faker::Date.between(50.years.ago, 2.months.ago),
-    shift:                  Faker::Number.between(1,500)
+    seniority:              seniority,
+    shift:                  random_shift
   )
-  ft_bid_number += 1
+  bid_number += 1
+  random_amount = Faker::Date.between(3.years, 1.day)
+  seniority += random_amount
 end
 
 # Create PT list
-pt_bid_number = 1
-3.times do
+shift_array = (1..200).to_a
+bid_number = 1
+seniority = Faker::Date.between(50.years.ago, 40.years.ago)
+workgroup_number.times do
+  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "PT",
-    bid_number:             pt_bid_number,
+    bid_number:             bid_number,
     first_name:             Faker::Name.first_name,
     last_name:              Faker::Name.last_name,
-    seniority:              Faker::Date.between(50.years.ago, 2.months.ago),
-    shift:                  Faker::Number.between(1,300)
+    seniority:              seniority,
+    shift:                  random_shift
   )
-  pt_bid_number += 1
+  bid_number += 1
+  random_amount = Faker::Date.between(3.years, 1.day)
+  seniority += random_amount
 end
-
 
 seniorities = Seniority.all
 

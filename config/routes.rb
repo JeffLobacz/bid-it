@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'seniorities/index'
+
+  get 'seniorities/cc'
+
+  get 'seniorities/ft'
+
+  get 'seniorities/pt'
+
   get 'welcome/index'
 
   get 'welcome/about'
