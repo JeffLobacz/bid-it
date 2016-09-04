@@ -12,7 +12,9 @@ end
 
 # #2
 group :development do
+  gem 'pry-rails'
   gem 'sqlite3'
+  gem 'faker'
 end
 
 # Use SCSS for stylesheets
