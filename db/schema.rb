@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904043408) do
+ActiveRecord::Schema.define(version: 20160924155406) do
 
   create_table "seniorities", force: :cascade do |t|
     t.string   "employment_status"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20160904043408) do
     t.integer  "shift"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "employee_number"
+    t.datetime "bid_time"
+    t.string   "qualification"
   end
 
 end
