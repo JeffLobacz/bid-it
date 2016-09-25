@@ -5,6 +5,7 @@
   </div>
 </div>
 <p>
+<div class="row">
 <u><h2>Crew-Chiefs</h2></u>
 <br>
 <style>
@@ -44,7 +45,7 @@
         <td><%= employee.first_name %></td>
         <td><%= employee.employee_number %></td>
         <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <td><%= employee.bid_time.strftime("%b %d %H:%M") %></td>
+        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <td><%= employee.qualification %></td>
         <td><%= employee.shift %></td>
       <% end %>
