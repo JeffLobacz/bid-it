@@ -36,7 +36,7 @@
     <th>Qual.</th>
     <th>Shift#</th>
   </tr>
-  <% @employee.sort_by_bid_number.each do |employee| %>
+  <% @employee.sort_by_seniority.each do |employee| %>
     <tr>
       <% if employee.employment_status == "CC" %>
         <td><%= employee.bid_number %></td>
