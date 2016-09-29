@@ -96,5 +96,27 @@ end
 
 seniorities = Seniority.all
 
+# Create CC Shifts
+shift_number = 1
+locations = ["40", "42A", "42B", "46A", "46B", "46C", "48A", "48B", "49B", "49A", "47B", "47A", "45", "43", "41"]
+3.times do
+  Shift.create!(
+    main_location:          "Ramp",
+    detail_location:        "Gates",
+    shift_number:           shift_number,
+    employment_status:      "FT CC",
+  )
+  Sunday.create!(
+  start_time:             500,
+  quit_time:              1330,
+  location:               locations[rand(locations.length)],
+  shift_id:               shift_number
+  )
+shift_number += 1
+end
+
+shifts = Shift.all
+
 puts "Seed finished"
 puts "#{Seniority.count} seniorities created"
+puts "#{Shift.count} shifts created"
