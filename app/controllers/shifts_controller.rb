@@ -1,8 +1,9 @@
 class ShiftsController < ApplicationController
   def index
     @shifts = Shift.all
-    @sunday = Sunday.find([:shift_id])
-    # @sunday = Sunday.find()
+    # @shift = Shift.where(shift_id: shift)
+    # @sunday = Sunday.where(shift_id: @shift)
+    # @categories = Category.where(user_id: current_user)
   end
 
   def show

@@ -32,7 +32,11 @@
   <% @shifts.each do |shift| %>
     <tr>
       <td><%= shift.shift_number %></td>
-      <td><%= Sunday.find([:shift :shift_id]).start_time %></td>
+      <td><%= Sunday.find_by(shift_id: shift.id).start_time %>-<%= Sunday.find_by(shift_id: shift.id).quit_time %> <%= Sunday.find_by(shift_id: shift.id).location %></td>
+
+      <%# @shift = shift.shift_id %>
+      <td><%#= Sunday.shift.quit_time %></td>
+      <td><%#= Sunday.shift.start_time %></td>
       <td><%#= employee.seniority.strftime("%m-%d-%Y") %></td>
       <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
     </tr>
