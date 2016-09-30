@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'seniorities/index'
 
   get 'seniorities/cc'
@@ -14,6 +15,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :seniorities, only: [:new, :create]
+
+  resources :shifts, only: [:index, :show] do
+    resources :sundays, only: [:index, :show]
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
