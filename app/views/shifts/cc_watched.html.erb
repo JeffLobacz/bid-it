@@ -1,4 +1,4 @@
-<h2><u><%= link_to "Bid Sheets", shifts_path %></u> > Crew-Chiefs <%= link_to "Add Shift", new_shift_path, class: 'btn btn-success' %> <%= link_to "All Shifts", shifts_cc_path, class: 'btn btn-success' %></h2>
+<h2><u><%= link_to "Bid Sheets", shifts_path %></u> > Crew-Chief Shift Watchlist <%= link_to "All Shifts", shifts_cc_path, class: 'btn btn-success' %></h2>
 <br>
 <style>
   table {
@@ -22,6 +22,7 @@
   <tr>
     <th>Watch</th>
     <th>Shift#</th>
+    <th>Bidder</th>
     <th>Sunday</th>
     <th>Monday</th>
     <th>Tuesday</th>
@@ -33,8 +34,17 @@
   <% @shifts.each do |shift| %>
     <% if shift.employment_status == "CC" && shift.watched == true %>
       <tr>
-        <td><%= shift.watched %></td>
+        <% if shift.watched == true %>
+        <td>checked</td>
+        <% else %>
+        <td>unchecked</td>
+        <% end %>
         <td><%= shift.shift_number %></td>
+        <% if shift.last_name || nil %>
+          <td><%= shift.last_name %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td>
           <%= shift.sun_start_time.strftime("%H:%M") %>
           <%= shift.sun_quit_time.strftime("%H:%M") %>

@@ -26,4 +26,8 @@ class ShiftsController < ApplicationController
     @shifts = Shift.all
   end
 
+  def open_cc
+    @shifts = Shift.all
+  end
+
 end
