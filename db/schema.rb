@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929231351) do
+ActiveRecord::Schema.define(version: 20160930235034) do
 
   create_table "seniorities", force: :cascade do |t|
     t.string   "employment_status"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20160929231351) do
     t.string   "days_off"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.time     "sun_start_time"
+    t.time     "sun_quit_time"
+    t.string   "sun_location"
   end
 
   create_table "sundays", force: :cascade do |t|
