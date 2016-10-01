@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001074625) do
+ActiveRecord::Schema.define(version: 20161001154606) do
 
   create_table "seniorities", force: :cascade do |t|
     t.string   "employment_status"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161001074625) do
     t.time     "sat_start_time"
     t.time     "sat_quit_time"
     t.string   "sat_location"
+    t.boolean  "watched"
   end
 
   create_table "sundays", force: :cascade do |t|

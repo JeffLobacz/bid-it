@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'shifts/cc'
   get 'shifts/ft'
   get 'shifts/pt'
+  get 'shifts/cc_watched'
 
   get 'welcome/index'
   get 'welcome/about'
