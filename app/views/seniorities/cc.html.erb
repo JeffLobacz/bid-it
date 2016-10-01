@@ -47,7 +47,8 @@
         <% if employee.qualification || "select" %>
           <td><%= employee.qualification %></td>
         <% end %>
-        <td><%= employee.bid_time.strftime("%b %d %H:%M") %></td>
+        <%# The following line is commented out for production env. error %>
+        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <td><%= employee.shift %></td>
       <% end %>
     </tr>
