@@ -32,8 +32,7 @@
   <% @shifts.each do |shift| %>
     <tr>
       <td><%= shift.shift_number %></td>
-      <td><%= shift.sun_start_time %>-<%= shift.sun_quit_time %> <%= shift.sun_location %></td>
-
+      <td><%= shift.sun_start_time.strftime("%H:%M") %>-<%= shift.sun_quit_time.strftime("%H:%M") %>  <%= shift.sun_location %></td>
       <%# @shift = shift.shift_id %>
       <td><%#= Sunday.shift.quit_time %></td>
       <td><%#= Sunday.shift.start_time %></td>

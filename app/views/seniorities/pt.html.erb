@@ -32,8 +32,8 @@
     <th>First Name</th>
     <th>Empl.#</th>
     <th>Occ. Seniority</th>
-    <th>Bid Time</th>
     <th>Qual.</th>
+    <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
   <% @employee.sort_by_seniority.each do |employee| %>
@@ -44,10 +44,10 @@
         <td><%= employee.first_name %></td>
         <td><%= employee.employee_number %></td>
         <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <% if employee.qualification || "select" %>
           <td><%= employee.qualification %></td>
         <% end %>
+        <td><%= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <td><%= employee.shift %></td>
       <% end %>
     </tr>

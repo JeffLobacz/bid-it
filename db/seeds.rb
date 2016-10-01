@@ -98,26 +98,30 @@ seniorities = Seniority.all
 
 # Create CC Shifts
 shift_number = 1
-start_times = []
-time = Time.new(2016, 10, 1, 4)
+
+start_times_array = []
+start = Time.new(2016, 10, 1, 21, 0, 0)
 5.times do
-  start_times << time
-  # time += 30.minutes
+  start_times_array << start
+  start += 30.minutes
 end
+# quit = start + 8.hours + 30.minutes
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
 5.times do
-  start_time = start_times[rand(start_times.length)]
-  # quit_time = start_time + 8.hours
+  start_time = start_times_array[rand(start_times_array.length)]
+  quit_time = start_time + (8.5*60*60)
   Shift.create!(
     main_location:          "Ramp",
     detail_location:        "Gates",
     shift_number:           shift_number,
     employment_status:      "FT CC",
     sun_start_time:         start_time,
-    # sun_quit_time:          quit_time,
+    sun_quit_time:          quit_time,
     sun_location:           locations[rand(locations.length)],
   )
-shift_number += 1
+  # start += 30.minutes
+  # quit = start + 8.hours + 30.minutes
+  shift_number += 1
 end
 
 shifts = Shift.all
