@@ -1,0 +1,49 @@
+<h2><u><%= link_to "Bid Sheets", shifts_path %></u> > Full-Time <%= link_to "Add Shift", new_shift_path, class: 'btn btn-success' %></h2>
+<br>
+<style>
+  table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  th, td {
+      text-align: center;
+      padding: 3px;
+  }
+
+  tr:nth-child(even){background-color: #f2f2f2}
+
+  th {
+      background-color: #4CAF50;
+      color: white;
+  }
+</style>
+<table>
+  <tr>
+    <th>Shift#</th>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+  </tr>
+  <% @shifts.each do |shift| %>
+    <% if shift.employment_status == "FT" %>
+      <tr>
+        <td><%= shift.shift_number %></td>
+        <td>
+          <%= shift.sun_start_time.strftime("%H:%M") %>-
+          <%= shift.sun_quit_time.strftime("%H:%M") %>
+          <%= shift.sun_location %>
+        </td>
+        <%# @shift = shift.shift_id %>
+        <td><%#= Sunday.shift.quit_time %></td>
+        <td><%#= Sunday.shift.start_time %></td>
+        <td><%#= employee.seniority.strftime("%m-%d-%Y") %></td>
+        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

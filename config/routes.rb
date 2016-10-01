@@ -1,24 +1,29 @@
 Rails.application.routes.draw do
 
-  get 'seniorities/index'
+  # get 'shifts/index'
+  #
+  # get 'shifts/new'
+  #
+  # get 'shifts/create'
+
+  # get 'seniorities/index'
 
   get 'seniorities/cc'
-
   get 'seniorities/ft'
-
   get 'seniorities/pt'
 
-  get 'welcome/index'
+  get 'shifts/cc'
+  get 'shifts/ft'
+  get 'shifts/pt'
 
+  get 'welcome/index'
   get 'welcome/about'
 
   root 'welcome#index'
 
-  resources :seniorities, only: [:new, :create]
+  resources :seniorities, only: [:index, :new, :create]
 
-  resources :shifts, only: [:index, :show] do
-    resources :sundays, only: [:index, :show]
-  end
+  resources :shifts, only: [:index, :new, :create]
 
 
 

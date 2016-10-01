@@ -1,11 +1,5 @@
-<p>
-<div class="row">
-  <div class="col-md-6">
-    <%= link_to "Crew Chiefs", seniorities_cc_path, class: 'btn btn-success' %>  <%= link_to "Full-Time", seniorities_ft_path, class: 'btn btn-success' %>  <%= link_to "Part-Time", seniorities_pt_path, class: 'btn btn-success' %>
-  </div>
-</div>
-<p>
-<u><h2>Crew-Chiefs</h2></u>
+<h2><u><%= link_to "Bid Times", seniorities_path %></u> > Crew-Chiefs <%= link_to "Add Employee", new_seniority_path, class: 'btn btn-success' %></h2>
+
 <br>
 <style>
   table {
@@ -36,7 +30,7 @@
     <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
-  <% @employee.sort_by_seniority.each do |employee| %>
+  <% @employees.sort_by_seniority.each do |employee| %>
     <tr>
       <% if employee.employment_status == "CC" %>
         <td><%= employee.bid_number %></td>
