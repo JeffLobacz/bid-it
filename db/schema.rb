@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930235034) do
+ActiveRecord::Schema.define(version: 20161001074625) do
 
   create_table "seniorities", force: :cascade do |t|
     t.string   "employment_status"
@@ -41,6 +41,24 @@ ActiveRecord::Schema.define(version: 20160930235034) do
     t.time     "sun_start_time"
     t.time     "sun_quit_time"
     t.string   "sun_location"
+    t.time     "mon_start_time"
+    t.time     "mon_quit_time"
+    t.string   "mon_location"
+    t.time     "tue_start_time"
+    t.time     "tue_quit_time"
+    t.string   "tue_location"
+    t.time     "wed_start_time"
+    t.time     "wed_quit_time"
+    t.string   "wed_location"
+    t.time     "thu_start_time"
+    t.time     "thu_quit_time"
+    t.string   "thu_location"
+    t.time     "fri_start_time"
+    t.time     "fri_quit_time"
+    t.string   "fri_location"
+    t.time     "sat_start_time"
+    t.time     "sat_quit_time"
+    t.string   "sat_location"
   end
 
   create_table "sundays", force: :cascade do |t|

@@ -101,9 +101,9 @@ shift_number = 1
 
 start_times_array = []
 start = Time.new(2016, 10, 1, 21, 0, 0)
-5.times do
+20.times do
   start_times_array << start
-  start += 30.minutes
+  start += 15.minutes
 end
 # quit = start + 8.hours + 30.minutes
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
@@ -114,7 +114,7 @@ locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
     main_location:          "Ramp",
     detail_location:        "Gates",
     shift_number:           shift_number,
-    employment_status:      "FT CC",
+    employment_status:      "CC",
     sun_start_time:         start_time,
     sun_quit_time:          quit_time,
     sun_location:           locations[rand(locations.length)],

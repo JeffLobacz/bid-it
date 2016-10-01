@@ -1,13 +1,13 @@
 <%= form_for @employee do |f| %>
     <p>
-    <%= f.label :employment_status %>:
-    <%= f.select :employment_status, ["CC", "FT", "PT"] %>
-    <p>
     <%= f.text_field :first_name, class: 'form-control', placeholder: "First name" %>
     <p>
     <%= f.text_field :last_name, class: 'form-control', placeholder: "Last name" %>
     <p>
     <%= f.text_field :employee_number, class: 'form-control', placeholder: "Employee number" %>
+    <p>
+      <%= f.label :employment_status %>:
+      <%= f.select :employment_status, ["CC", "FT", "PT"] %>
     <p>
     <b>Occupational</b> <%= f.label :seniority %>:
     <%= f.date_field :seniority %>

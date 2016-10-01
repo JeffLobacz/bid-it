@@ -17,15 +17,15 @@ class SenioritiesController < ApplicationController
 
 
   def cc
-    @employee = Seniority.all
+    @employees = Seniority.all
   end
 
   def ft
-    @employee = Seniority.all
+    @employees = Seniority.all
   end
 
   def pt
-    @employee = Seniority.all
+    @employees = Seniority.all
   end
 end
 
