@@ -8,7 +8,7 @@
 require 'faker'
 
 # Number of employees for each employment_status
-workgroup_number = 20
+workgroup_number = 5
 
 # Create CC list
 shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
@@ -96,5 +96,36 @@ end
 
 seniorities = Seniority.all
 
+# Create CC Shifts
+shift_number = 1
+
+start_times_array = []
+start = Time.new(2016, 10, 1, 21, 0, 0)
+5.times do
+  start_times_array << start
+  start += 30.minutes
+end
+# quit = start + 8.hours + 30.minutes
+locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
+5.times do
+  start_time = start_times_array[rand(start_times_array.length)]
+  quit_time = start_time + (8.5*60*60)
+  Shift.create!(
+    main_location:          "Ramp",
+    detail_location:        "Gates",
+    shift_number:           shift_number,
+    employment_status:      "FT CC",
+    sun_start_time:         start_time,
+    sun_quit_time:          quit_time,
+    sun_location:           locations[rand(locations.length)],
+  )
+  # start += 30.minutes
+  # quit = start + 8.hours + 30.minutes
+  shift_number += 1
+end
+
+shifts = Shift.all
+
 puts "Seed finished"
 puts "#{Seniority.count} seniorities created"
+puts "#{Shift.count} shifts created"
