@@ -21,6 +21,7 @@
 </style>
 <table>
   <tr>
+    <!-- <th>Watch</th> -->
     <th>Bid#</th>
     <th>Last Name</th>
     <th>First Name</th>
@@ -33,6 +34,7 @@
   <% @employees.sort_by_seniority.each do |employee| %>
     <tr>
       <% if employee.employment_status == "CC" %>
+        <!-- <td><%#= employee.bid_number %></td> -->
         <td><%= employee.bid_number %></td>
         <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>

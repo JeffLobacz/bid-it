@@ -18,7 +18,6 @@ employee_number = Faker::Number.between(100000, 110000)
 bid_time = DateTime.new(2017,1,9,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
 workgroup_number.times do
-  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "CC",
     bid_number:             bid_number,
@@ -28,7 +27,6 @@ workgroup_number.times do
     seniority:              seniority,
     bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
-    shift:                  random_shift
   )
   bid_number += 1
   random_amount = Faker::Date.between(1.years, 1.day)
@@ -46,7 +44,6 @@ employee_number = Faker::Number.between(100000, 110000)
 bid_time = DateTime.new(2017,1,10,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
 workgroup_number.times do
-  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "FT",
     bid_number:             bid_number,
@@ -56,7 +53,6 @@ workgroup_number.times do
     seniority:              seniority,
     bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
-    shift:                  random_shift
   )
   bid_number += 1
   random_amount = Faker::Date.between(1.years, 1.day)
@@ -74,7 +70,6 @@ employee_number = Faker::Number.between(100000, 110000)
 bid_time = DateTime.new(2017,1,11,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
 workgroup_number.times do
-  random_shift = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "PT",
     bid_number:             bid_number,
@@ -84,7 +79,6 @@ workgroup_number.times do
     seniority:              seniority,
     bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
-    shift:                  random_shift
   )
   bid_number += 1
   random_amount = Faker::Date.between(1.years, 1.day)
