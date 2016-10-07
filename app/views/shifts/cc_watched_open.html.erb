@@ -1,6 +1,5 @@
-<h3><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief </b><%= link_to "Add Shift", new_shift_path, class: 'btn btn-success' %> <%= link_to "Watchlist", shifts_cc_watched_path, class: 'btn btn-danger' %></h3>
-<h4><b>All Shifts</b> | <u><i><%= link_to "Open Shifts Only", shifts_cc_open_path %></i></u></h4>
-<h4><b>Full Bid Sheet</b> | <u><i><%= link_to "Watchlist", shifts_cc_watched_path %></i></u></h4>
+<h3><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief </b><%= link_to "Add Shift", new_shift_path, class: 'btn btn-success' %> <%= link_to "Full Bid Sheet", shifts_cc_path, class: 'btn btn-danger' %></h3>
+<h4><b>All Watched Shifts</b> | <u><i><%= link_to "Open Watched Shifts Only", shifts_cc_watched_open_path %></i></u></h4>
 <br>
 <style>
   table {
@@ -34,7 +33,7 @@
     <th>Saturday</th>
   </tr>
   <% @shifts.each do |shift| %>
-    <% if shift.employment_status == "CC" %>
+    <% if shift.employment_status == "CC" && shift.watched == true && shift.last_name == nil %>
       <tr>
         <% if shift.watched == true %>
           <td>checked</td>
