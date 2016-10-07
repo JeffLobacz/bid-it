@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   get 'seniorities/pt'
 
   get 'shifts/cc'
+  get 'shifts/cc_open'
+  get 'shifts/cc_watched'
+  get 'shifts/cc_watched_open'
   get 'shifts/ft'
   get 'shifts/pt'
-  get 'shifts/cc_watched'
-  get 'shifts/open_cc'
 
   get 'welcome/index'
   get 'welcome/about'

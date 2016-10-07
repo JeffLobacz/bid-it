@@ -14,11 +14,7 @@ class ShiftsController < ApplicationController
     @shifts = Shift.all
   end
 
-  def ft
-    @shifts = Shift.all
-  end
-
-  def pt
+  def cc_open
     @shifts = Shift.all
   end
 
@@ -26,7 +22,15 @@ class ShiftsController < ApplicationController
     @shifts = Shift.all
   end
 
-  def open_cc
+  def cc_watched_open
+    @shifts = Shift.all
+  end
+
+  def ft
+    @shifts = Shift.all
+  end
+
+  def pt
     @shifts = Shift.all
   end
 
