@@ -23,7 +23,8 @@
   <tr>
     <th>Watch</th>
     <th>Shift#</th>
-    <th>Bidder</th>
+    <th>Name</th>
+    <th>Area</th>
     <th>Off</th>
     <th>Hours</th>
     <th>Weekly</th>
@@ -44,11 +45,12 @@
           <td>No</td>
         <% end %>
         <td><%= shift.shift_number %></td>
-        <% if shift.last_name || nil %>
+        <% if shift.last_name != nil %>
           <td><%= shift.last_name %></td>
         <% else %>
           <td></td>
         <% end %>
+        <td><%= shift.detail_location %></td>
         <td><%= shift.days_off %></td>
         <td><%= shift.day_hours %></td>
         <td><%= shift.total_hours %></td>

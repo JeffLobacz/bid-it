@@ -9,15 +9,21 @@ require 'faker'
 
 # Number of employees for each employment_status
 workgroup_number = 5
+number_of_cc_shifts = 5
 
 # Create CC list
-shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
+shift_array = []
+number_of_cc_shifts.times do |x|
+  shift_array << x
+  x += 1
+end
 bid_number = 1
 seniority = Faker::Date.between(50.years.ago, 40.years.ago)
 employee_number = Faker::Number.between(100000, 110000)
 bid_time = DateTime.new(2017,1,9,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
 workgroup_number.times do
+  shift_array_selection = shift_array.delete_at(rand(shift_array.length))
   Seniority.create!(
     employment_status:      "CC",
     bid_number:             bid_number,
@@ -27,6 +33,7 @@ workgroup_number.times do
     seniority:              seniority,
     bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
+    shift:                  shift_array_selection,
   )
   bid_number += 1
   random_amount = Faker::Date.between(1.years, 1.day)
@@ -94,6 +101,17 @@ seniorities = Seniority.all
 shift_number = 1
   # watched
 watched_array = [true, false]
+
+  # Winning bidder
+# taken_array = %w[y n n n]
+# names = ["Po", "Chappel", "James", "Williams", "Clark"]
+# taken = taken_array[rand(taken_array.length)]
+# if taken == "y" && names.count != nil
+#   shift_taker = names.delete_at(rand(names.length))
+# else
+#   shift_taker = ""
+# end
+
   # Number of days off in weekend
 number_of_days_off_array = [2,3]
   # Days off
@@ -108,7 +126,7 @@ start = Time.new(2016, 10, 1, 21, 0, 0)
 end
 unpaid_hours = 0.5
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
-10.times do
+number_of_cc_shifts.times do
   weekly_hours = 0
   days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
   if days_off_number == 2
@@ -152,11 +170,12 @@ locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
     sat_start = start_times_array[rand(start_times_array.length)]
     sat_quit = sat_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
+    # @employee = Seniority.find_by({shift: shift_number}).last_name,
   end
   Shift.create!(
     watched:                watched_array[rand(watched_array.length)],
     main_location:          "Ramp",
-    detail_location:        "Gates",
+    detail_location:        "Line",
     shift_number:           shift_number,
     employment_status:      "CC",
     days_off:               weekend,
@@ -183,6 +202,7 @@ locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
     sat_location:           locations[rand(locations.length)],
     day_hours:              paid_hours,
     total_hours:            weekly_hours,
+    # last_name:              Seniority.find_by({shift: shift_number}).last_name,
   )
   shift_number += 1
 end
