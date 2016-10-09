@@ -94,8 +94,11 @@ seniorities = Seniority.all
 shift_number = 1
   # watched
 watched_array = [true, false]
-  # Days OFF
-days_off_array = %w[SM MT TW WQ QF FJ JS]
+  # Number of days off in weekend
+number_of_days_off_array = [2,3]
+  # Days off
+two_days_off_array = %w[SM MT TW WQ QF FJ JS]
+three_days_off_array = %w[SMT MTW TWQ WQF QFJ FJS JSM]
   # Start Times
 start_times_array = []
 start = Time.new(2016, 10, 1, 21, 0, 0)
@@ -103,36 +106,52 @@ start = Time.new(2016, 10, 1, 21, 0, 0)
   start_times_array << start
   start += 15.minutes
 end
+unpaid_hours = 0.5
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
-5.times do
-  weekend = days_off_array[rand(days_off_array.length)]
-  unless weekend == "JS" || weekend == "SM"
+10.times do
+  weekly_hours = 0
+  days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
+  if days_off_number == 2
+    weekend = two_days_off_array[rand(two_days_off_array.length)]
+    paid_hours = 8.0
+  elsif days_off_number == 3
+    weekend = three_days_off_array[rand(three_days_off_array.length)]
+    paid_hours = 10
+  end
+  unless weekend == "JS" || weekend == "SM" || weekend == "SMT" || weekend == "FJS" || weekend == "JSM"
     sun_start = start_times_array[rand(start_times_array.length)]
-    sun_quit = sun_start + (8.5*60*60)
+    sun_quit = sun_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "SM" || weekend == "MT"
+  unless weekend == "SM" || weekend == "MT" || weekend == "SMT" || weekend == "MTW" || weekend == "JSM"
     mon_start = start_times_array[rand(start_times_array.length)]
-    mon_quit = mon_start + (8.5*60*60)
+    mon_quit = mon_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "MT" || weekend == "TW"
+  unless weekend == "MT" || weekend == "TW" || weekend == "SMT" || weekend == "MTW" || weekend == "TWQ"
     tue_start = start_times_array[rand(start_times_array.length)]
-    tue_quit = tue_start + (8.5*60*60)
+    tue_quit = tue_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "TW" || weekend == "WQ"
+  unless weekend == "TW" || weekend == "WQ" || weekend == "WQF" || weekend == "TWQ" || weekend == "MTW"
     wed_start = start_times_array[rand(start_times_array.length)]
-    wed_quit = wed_start + (8.5*60*60)
+    wed_quit = wed_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "WQ" || weekend == "QF"
+  unless weekend == "WQ" || weekend == "QF" || weekend == "QFJ" || weekend == "WQF" || weekend == "TWQ"
     thu_start = start_times_array[rand(start_times_array.length)]
-    thu_quit = thu_start + (8.5*60*60)
+    thu_quit = thu_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "QF" || weekend == "FJ"
+  unless weekend == "QF" || weekend == "FJ" || weekend == "FJS" || weekend == "QFJ" || weekend == "WQF"
     fri_start = start_times_array[rand(start_times_array.length)]
-    fri_quit = fri_start + (8.5*60*60)
+    fri_quit = fri_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
-  unless weekend == "FJ" || weekend == "JS"
+  unless weekend == "FJ" || weekend == "JS" || weekend == "JSM" || weekend == "FJS" || weekend == "QFJ"
     sat_start = start_times_array[rand(start_times_array.length)]
-    sat_quit = sat_start + (8.5*60*60)
+    sat_quit = sat_start + ((paid_hours+unpaid_hours)*60*60)
+    weekly_hours += paid_hours
   end
   Shift.create!(
     watched:                watched_array[rand(watched_array.length)],
@@ -162,6 +181,8 @@ locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
     sat_start_time:         sat_start,
     sat_quit_time:          sat_quit,
     sat_location:           locations[rand(locations.length)],
+    day_hours:              paid_hours,
+    total_hours:            weekly_hours,
   )
   shift_number += 1
 end
