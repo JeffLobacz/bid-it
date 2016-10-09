@@ -8,13 +8,13 @@
 require 'faker'
 
 # Number of employees for each employment_status
-workgroup_number = 5
-number_of_cc_shifts = 5
+workgroup_number = 10
+number_of_cc_shifts = 10
 
 # Create CC list
 shift_array = []
-number_of_cc_shifts.times do |x|
-  shift_array << x
+(number_of_cc_shifts - 5).times do |x|
+  shift_array << x + 1
   x += 1
 end
 bid_number = 1
@@ -44,56 +44,56 @@ workgroup_number.times do
 end
 
 # Create FT list
-shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
-bid_number = 1
-seniority = Faker::Date.between(50.years.ago, 40.years.ago)
-employee_number = Faker::Number.between(100000, 110000)
-bid_time = DateTime.new(2017,1,10,5)
-qualified_array = ["Exp", "", "", "", "", "", "", ""]
-workgroup_number.times do
-  Seniority.create!(
-    employment_status:      "FT",
-    bid_number:             bid_number,
-    first_name:             Faker::Name.first_name,
-    last_name:              Faker::Name.last_name,
-    employee_number:        employee_number,
-    seniority:              seniority,
-    bid_time:               bid_time,
-    qualification:          qualified_array[rand(qualified_array.length)],
-  )
-  bid_number += 1
-  random_amount = Faker::Date.between(1.years, 1.day)
-  seniority += random_amount
-  random_number = Faker::Number.between(1,200)
-  employee_number += random_number
-  bid_time = bid_time + 5.minutes
-end
-
-# Create PT list
-shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
-bid_number = 1
-seniority = Faker::Date.between(50.years.ago, 40.years.ago)
-employee_number = Faker::Number.between(100000, 110000)
-bid_time = DateTime.new(2017,1,11,5)
-qualified_array = ["Exp", "", "", "", "", "", "", ""]
-workgroup_number.times do
-  Seniority.create!(
-    employment_status:      "PT",
-    bid_number:             bid_number,
-    first_name:             Faker::Name.first_name,
-    last_name:              Faker::Name.last_name,
-    employee_number:        employee_number,
-    seniority:              seniority,
-    bid_time:               bid_time,
-    qualification:          qualified_array[rand(qualified_array.length)],
-  )
-  bid_number += 1
-  random_amount = Faker::Date.between(1.years, 1.day)
-  seniority += random_amount
-  random_number = Faker::Number.between(1,200)
-  employee_number += random_number
-  bid_time = bid_time + 5.minutes
-end
+# shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
+# bid_number = 1
+# seniority = Faker::Date.between(50.years.ago, 40.years.ago)
+# employee_number = Faker::Number.between(100000, 110000)
+# bid_time = DateTime.new(2017,1,10,5)
+# qualified_array = ["Exp", "", "", "", "", "", "", ""]
+# workgroup_number.times do
+#   Seniority.create!(
+#     employment_status:      "FT",
+#     bid_number:             bid_number,
+#     first_name:             Faker::Name.first_name,
+#     last_name:              Faker::Name.last_name,
+#     employee_number:        employee_number,
+#     seniority:              seniority,
+#     bid_time:               bid_time,
+#     qualification:          qualified_array[rand(qualified_array.length)],
+#   )
+#   bid_number += 1
+#   random_amount = Faker::Date.between(1.years, 1.day)
+#   seniority += random_amount
+#   random_number = Faker::Number.between(1,200)
+#   employee_number += random_number
+#   bid_time = bid_time + 5.minutes
+# end
+#
+# # Create PT list
+# shift_array = (1..workgroup_number*rand(0.3..0.8)).to_a
+# bid_number = 1
+# seniority = Faker::Date.between(50.years.ago, 40.years.ago)
+# employee_number = Faker::Number.between(100000, 110000)
+# bid_time = DateTime.new(2017,1,11,5)
+# qualified_array = ["Exp", "", "", "", "", "", "", ""]
+# workgroup_number.times do
+#   Seniority.create!(
+#     employment_status:      "PT",
+#     bid_number:             bid_number,
+#     first_name:             Faker::Name.first_name,
+#     last_name:              Faker::Name.last_name,
+#     employee_number:        employee_number,
+#     seniority:              seniority,
+#     bid_time:               bid_time,
+#     qualification:          qualified_array[rand(qualified_array.length)],
+#   )
+#   bid_number += 1
+#   random_amount = Faker::Date.between(1.years, 1.day)
+#   seniority += random_amount
+#   random_number = Faker::Number.between(1,200)
+#   employee_number += random_number
+#   bid_time = bid_time + 5.minutes
+# end
 
 seniorities = Seniority.all
 
@@ -101,17 +101,6 @@ seniorities = Seniority.all
 shift_number = 1
   # watched
 watched_array = [true, false]
-
-  # Winning bidder
-# taken_array = %w[y n n n]
-# names = ["Po", "Chappel", "James", "Williams", "Clark"]
-# taken = taken_array[rand(taken_array.length)]
-# if taken == "y" && names.count != nil
-#   shift_taker = names.delete_at(rand(names.length))
-# else
-#   shift_taker = ""
-# end
-
   # Number of days off in weekend
 number_of_days_off_array = [2,3]
   # Days off
@@ -127,6 +116,14 @@ end
 unpaid_hours = 0.5
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
 number_of_cc_shifts.times do
+
+  if Seniority.find_by({shift: shift_number}) != nil
+    @bidder = Seniority.find_by({shift: shift_number})
+    bidder = @bidder.last_name
+  else
+    bidder = ""
+  end
+
   weekly_hours = 0
   days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
   if days_off_number == 2
@@ -136,37 +133,37 @@ number_of_cc_shifts.times do
     weekend = three_days_off_array[rand(three_days_off_array.length)]
     paid_hours = 10
   end
-  unless weekend == "JS" || weekend == "SM" || weekend == "SMT" || weekend == "FJS" || weekend == "JSM"
+  unless weekend.include? "S"
     sun_start = start_times_array[rand(start_times_array.length)]
     sun_quit = sun_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "SM" || weekend == "MT" || weekend == "SMT" || weekend == "MTW" || weekend == "JSM"
+  unless weekend.include? "M"
     mon_start = start_times_array[rand(start_times_array.length)]
     mon_quit = mon_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "MT" || weekend == "TW" || weekend == "SMT" || weekend == "MTW" || weekend == "TWQ"
+  unless weekend.include? "T"
     tue_start = start_times_array[rand(start_times_array.length)]
     tue_quit = tue_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "TW" || weekend == "WQ" || weekend == "WQF" || weekend == "TWQ" || weekend == "MTW"
+  unless weekend.include? "W"
     wed_start = start_times_array[rand(start_times_array.length)]
     wed_quit = wed_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "WQ" || weekend == "QF" || weekend == "QFJ" || weekend == "WQF" || weekend == "TWQ"
+  unless weekend.include? "Q"
     thu_start = start_times_array[rand(start_times_array.length)]
     thu_quit = thu_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "QF" || weekend == "FJ" || weekend == "FJS" || weekend == "QFJ" || weekend == "WQF"
+  unless weekend.include? "F"
     fri_start = start_times_array[rand(start_times_array.length)]
     fri_quit = fri_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
   end
-  unless weekend == "FJ" || weekend == "JS" || weekend == "JSM" || weekend == "FJS" || weekend == "QFJ"
+  unless weekend.include? "J"
     sat_start = start_times_array[rand(start_times_array.length)]
     sat_quit = sat_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
@@ -202,7 +199,7 @@ number_of_cc_shifts.times do
     sat_location:           locations[rand(locations.length)],
     day_hours:              paid_hours,
     total_hours:            weekly_hours,
-    # last_name:              Seniority.find_by({shift: shift_number}).last_name,
+    last_name:              bidder,
   )
   shift_number += 1
 end

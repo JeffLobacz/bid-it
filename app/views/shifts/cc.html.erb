@@ -45,8 +45,8 @@
           <td>No</td>
         <% end %>
         <td><%= shift.shift_number %></td>
-        <% if shift.last_name != nil %>
-          <td><%= shift.last_name %></td>
+        <% if Seniority.find_by({shift: shift.shift_number}) != nil %>
+          <td><%= Seniority.find_by({shift: shift.shift_number}).last_name %></td>
         <% else %>
           <td></td>
         <% end %>
@@ -55,61 +55,61 @@
         <td><%= shift.day_hours %></td>
         <td><%= shift.total_hours %></td>
 
-        <% unless shift.days_off == "JS" || shift.days_off == "SM" || shift.days_off == "SMT" || shift.days_off == "FJS" || shift.days_off == "JSM" %>
+        <% unless shift.days_off.include? "S" %>
           <td>
             <%= shift.sun_start_time.strftime("%H:%M") %>-<%= shift.sun_quit_time.strftime("%H:%M") %>
             <%= shift.sun_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "SM" || shift.days_off == "MT" || shift.days_off == "SMT" || shift.days_off == "MTW" || shift.days_off == "JSM" %>
+        <% unless shift.days_off.include? "M" %>
           <td>
             <%= shift.mon_start_time.strftime("%H:%M") %>-<%= shift.mon_quit_time.strftime("%H:%M") %>
             <%= shift.mon_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "MT" || shift.days_off == "TW" || shift.days_off == "SMT" || shift.days_off == "MTW" || shift.days_off == "TWQ" %>
+        <% unless shift.days_off.include? "T" %>
           <td>
             <%= shift.tue_start_time.strftime("%H:%M") %>-<%= shift.tue_quit_time.strftime("%H:%M") %>
             <%= shift.tue_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "TW" || shift.days_off == "WQ" || shift.days_off == "WQF" || shift.days_off == "TWQ" || shift.days_off == "MTW" %>
+        <% unless shift.days_off.include? "W" %>
           <td>
             <%= shift.wed_start_time.strftime("%H:%M") %>-<%= shift.wed_quit_time.strftime("%H:%M") %>
             <%= shift.wed_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "WQ" || shift.days_off == "QF" || shift.days_off == "QFJ" || shift.days_off == "WQF" || shift.days_off == "TWQ" %>
+        <% unless shift.days_off.include? "Q" %>
           <td>
             <%= shift.thu_start_time.strftime("%H:%M") %>-<%= shift.thu_quit_time.strftime("%H:%M") %>
             <%= shift.thu_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "QF" || shift.days_off == "FJ" || shift.days_off == "FJS" || shift.days_off == "QFJ" || shift.days_off == "WQF" %>
+        <% unless shift.days_off.include? "F" %>
           <td>
             <%= shift.fri_start_time.strftime("%H:%M") %>-<%= shift.fri_quit_time.strftime("%H:%M") %>
             <%= shift.fri_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
-        <% unless shift.days_off == "FJ" || shift.days_off == "JS" || shift.days_off == "JSM" || shift.days_off == "FJS" || shift.days_off == "QFJ" %>
+        <% unless shift.days_off.include? "J" %>
           <td>
             <%= shift.sat_start_time.strftime("%H:%M") %>-<%= shift.sat_quit_time.strftime("%H:%M") %>
             <%= shift.sat_location %>
           </td>
         <% else %>
-          <td><center>Off</center></td>
+          <td><center>off</center></td>
         <% end %>
 
       </tr>
