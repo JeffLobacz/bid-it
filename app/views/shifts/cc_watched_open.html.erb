@@ -1,7 +1,10 @@
 <h3><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Watchlist / Open Shifts Only </b> <%= link_to "Full Bid Sheet", shifts_cc_path, class: 'btn btn-danger' %></h3>
-<h4><u><i><%= link_to "All Shifts", shifts_cc_watched_path %></i></u> | <b>Open Shifts Only </b></h4>
+<div class="right"><h4><u><i><%= link_to "All Shifts", shifts_cc_watched_path %></i></u> | <b>Open Shifts Only </b></h4></div>
 <br>
 <style>
+.right {
+  text-align: right;
+}
   table {
       border-collapse: collapse;
       width: 100%;
@@ -22,8 +25,12 @@
 <table>
   <tr>
     <th>Watch</th>
-    <th>Shift#</th>
-    <th>Bidder</th>
+    <th>#</th>
+    <th>Name</th>
+    <th>Area</th>
+    <th>Off</th>
+    <th>Hrs</th>
+    <th>Wkly</th>
     <th>Sunday</th>
     <th>Monday</th>
     <th>Tuesday</th>
@@ -33,29 +40,80 @@
     <th>Saturday</th>
   </tr>
   <% @shifts.each do |shift| %>
-    <% if shift.employment_status == "CC" && shift.watched == true && shift.last_name == nil %>
+    <% if shift.employment_status == "CC" && shift.watched == true && Seniority.find_by(shift: shift.shift_number) == nil %>
       <tr>
         <% if shift.watched == true %>
-          <td>checked</td>
+          <td><div class="glyphicon glyphicon-check"></div></td>
         <% else %>
-          <td>unchecked</td>
+          <td><div class="glyphicon glyphicon-unchecked"></div></td>
         <% end %>
         <td><%= shift.shift_number %></td>
-        <% if shift.last_name || nil %>
-          <td><%= shift.last_name %></td>
+        <% if Seniority.find_by(shift: shift.shift_number) != nil %>
+          <td><%= Seniority.find_by(shift: shift.shift_number).first_name + " " + Seniority.find_by(shift: shift.shift_number).last_name %></td>
         <% else %>
           <td></td>
         <% end %>
-        <td>
-          <%= shift.sun_start_time.strftime("%H:%M") %>
-          <%= shift.sun_quit_time.strftime("%H:%M") %>
-          <%= shift.sun_location %>
-        </td>
-        <%# @shift = shift.shift_id %>
-        <td><%#= Sunday.shift.quit_time %></td>
-        <td><%#= Sunday.shift.start_time %></td>
-        <td><%#= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
+        <td><%= shift.detail_location %></td>
+        <td><%= shift.days_off %></td>
+        <td><%= shift.day_hours %></td>
+        <td><%= shift.total_hours %></td>
+        <% unless shift.days_off.include? "S" %>
+          <td>
+            <%= shift.sun_start_time.strftime("%H:%M") %>-<%= shift.sun_quit_time.strftime("%H:%M") %>
+            <b><%= shift.sun_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "M" %>
+          <td>
+            <%= shift.mon_start_time.strftime("%H:%M") %>-<%= shift.mon_quit_time.strftime("%H:%M") %>
+            <h style="color:rgb(255,0,0)"><%= shift.mon_location %>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "T" %>
+          <td>
+            <%= shift.tue_start_time.strftime("%H:%M") %>-<%= shift.tue_quit_time.strftime("%H:%M") %>
+            <b><%= shift.tue_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "W" %>
+          <td>
+            <%= shift.wed_start_time.strftime("%H:%M") %>-<%= shift.wed_quit_time.strftime("%H:%M") %>
+            <b><%= shift.wed_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "Q" %>
+          <td>
+            <%= shift.thu_start_time.strftime("%H:%M") %>-<%= shift.thu_quit_time.strftime("%H:%M") %>
+            <b><%= shift.thu_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "F" %>
+          <td>
+            <%= shift.fri_start_time.strftime("%H:%M") %>-<%= shift.fri_quit_time.strftime("%H:%M") %>
+            <b><%= shift.fri_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+        <% unless shift.days_off.include? "J" %>
+          <td>
+            <%= shift.sat_start_time.strftime("%H:%M") %>-<%= shift.sat_quit_time.strftime("%H:%M") %>
+            <b><%= shift.sat_location %></b>
+          </td>
+        <% else %>
+          <td>off</td>
+        <% end %>
+
       </tr>
     <% end %>
   <% end %>

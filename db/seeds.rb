@@ -117,12 +117,12 @@ unpaid_hours = 0.5
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
 number_of_cc_shifts.times do
 
-  if Seniority.find_by({shift: shift_number}) != nil
-    @bidder = Seniority.find_by({shift: shift_number})
-    bidder = @bidder.last_name
-  else
-    bidder = ""
-  end
+  # if Seniority.find_by({shift: shift_number}) != nil
+  #   bidder = Seniority.find_by(shift: shift_number).last_name
+  #   # bidder = @bidder.last_name
+  # else
+  #   bidder = ""
+  # end
 
   weekly_hours = 0
   days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
@@ -199,7 +199,7 @@ number_of_cc_shifts.times do
     sat_location:           locations[rand(locations.length)],
     day_hours:              paid_hours,
     total_hours:            weekly_hours,
-    last_name:              bidder,
+    # last_name:              bidder,
   )
   shift_number += 1
 end
