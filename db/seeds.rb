@@ -9,7 +9,7 @@ require 'faker'
 
 # Number of employees for each employment_status
 workgroup_number = 10
-number_of_cc_shifts = 10
+number_of_cc_shifts = 30
 
 # Create CC list
 shift_array = []

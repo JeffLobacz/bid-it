@@ -1,8 +1,8 @@
-<h3><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid Sheet / All Shifts </b> <%= link_to "Watchlist", shifts_cc_watched_path, class: 'btn btn-success' %></h3>
+<h3><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h3>
 <div class="row">
   <h4>
   <div class="col-md-4">
-      <b>Full Bid Sheet</b> | <u><i><%= link_to "Watchlist", shifts_cc_open_path %></i></u>
+      <b>Full Bid Sheet</b> | <u><i><%= link_to "Watchlist", shifts_cc_watched_path %></i></u>
   </div>
   <div class="col-md-4">
     <div class="center"
@@ -17,64 +17,63 @@
   </h4>
 </div>
 <br>
-<style>
-.center {
-  text-align: center;
-}
-.right {
-  text-align: right;
-}
 
-  tbody {
-    overflow-y: scroll;
-    height: 150px;
-    width: 100%;
-    position:absolute;
+<style>
+  .center {
+    text-align: center;
+  }
+  .right {
+    text-align: right;
   }
 
   table {
-      border-collapse: collapse;
-      height: 120px;
       width: 100%;
+      margin-left: auto;
+      margin-right: auto;
   }
-
-  th, td {
-      text-align:center;
-      padding: 3px;
-  }
-
-  tr:nth-child(even){background-color: #f2f2f2}
-
   th {
-      background-color: #4CAF50;
-      color: white;
+    background-color: #4CAF50;
+    color: white;
+    padding: 3px;
+    text-align: center;
   }
+  td {
+    padding: 3px;
+    text-align: center;
+  }
+  tbody {
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+    position: absolute;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}
 </style>
 
 <table>
   <thead>
     <tr>
-      <th>Watch</th>
-      <th>#</th>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Off</th>
-      <th>Hrs</th>
-      <th>Wkly</th>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
+      <th scope="col">Watch</th>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Area</th>
+      <th scope="col">Off</th>
+      <th scope="col">Hrs</th>
+      <th scope="col">Wkly</th>
+      <th scope="col">Sunday</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thursday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
     </tr>
   </thead>
+
   <tbody>
     <% @shifts.each do |shift| %>
       <% if shift.employment_status == "CC" %>
         <tr>
-
           <% if shift.watched == true %>
             <td><div class="glyphicon glyphicon-check"></div></td>
           <% else %>
@@ -146,7 +145,6 @@
           <% else %>
             <td>off</td>
           <% end %>
-
         </tr>
       <% end %>
     <% end %>
