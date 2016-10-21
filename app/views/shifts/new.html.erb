@@ -1,2 +1,170 @@
-<h1>Shifts#new</h1>
-<p>Find me in app/views/shifts/new.html.erb</p>
+<style>
+* { padding: 0; margin: 0; }
+  table.cruises {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 12px;
+    cellspacing: 0;
+    border-collapse: collapse;
+    /*width: 535px;*/
+    }
+  table.cruises th {
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    text-align: center;
+    background: #eee;
+    }
+  table.cruises td {
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    text-align: center;
+    background: #eee;
+    }
+  div.scrollableContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 1.3em;
+    top: 17px;
+    /*left: 0px;*/
+    border: 1px solid #999;
+    background: #aab;
+    }
+  div.scrollingArea {
+    height: 100px;
+    width: 100%;
+    overflow: auto;
+    }
+
+  table.scrollable thead tr {
+    left: 0; top: 0;
+    position: absolute;
+    }
+
+  table.cruises .name     { width: 220px; }
+  table.cruises .operator { width: 220px; }
+  table.cruises .began    { width: 220px; }
+  table.cruises .tonnage  { width: 220px; }
+  table.cruises .status   { width: 220px; }
+</style>
+
+<div class="scrollableContainer">
+  <div class="scrollingArea">
+    <table class="cruises scrollable">
+      <thead>
+        <tr>
+          <th><div class="name">Name</div></th>
+          <th><div class="operator">Operator</div></th>
+          <th><div class="began">Began operation</div></th>
+          <th><div class="tonnage">Tonnage</div></th>
+          <th><div class="status">Status</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+        <tr>
+          <td><div class="name">Name of ship</div></td>
+          <td><div class="operator">Who operates</div></td>
+          <td><div class="began">Began service when</div></td>
+          <td><div class="tonnage">How big</div></td>
+          <td><div class="status">Current status</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
