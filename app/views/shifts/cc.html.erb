@@ -25,58 +25,37 @@
   .right {
     text-align: right;
   }
-
-  /*th {
-    background-color: #4CAF50;
-    color: white;
-    padding: 3px;
-    text-align: center;
-  }
-  td {
-    padding: 3px;
-    text-align: center;
-  }
-  thead {
-    position: relative;
-  }*/
-  /*table.shifts tbody {
-    overflow-y: scroll;
-    height: 200px;
-    width: 100%;
-    position: absolute;
-  }*/
-  /*tr:nth-child(even){background-color: #f2f2f2}*/*/
-
+  tr:nth-child(even){background-color: #f2f2f2}*/
 * { padding: 0; margin: 0; }
   table.shifts {
     font-family: verdana, arial, helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     cellspacing: 0;
-    /*border-collapse: collapse;*/
+    border-collapse: collapse;
     width: 100%;
     }
   table.shifts th, table.shifts td {
     border-left: 1px solid #999;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
-    padding: 3px;
+    padding: 2px;
     }
   table.shifts th {
     background-color: #4CAF50;
     color: white;
   }
-  /*table.shifts th { background: #aab; }
-  table.shifts td { background: #eee; }*/
+  table.shifts td { height: 30px; }
   div.scrollableContainer {
     position: relative;
     width: 100%;
+    border: 1px solid black;
     padding-top: 1.7em;
     /*margin: 40px;*/
     /*border: 1px solid #999;*/
     /*background: #aab;*/
     }
   div.scrollingArea {
-    height: 440px;
+    height: 420px;
     overflow: auto;
     }
   table.scrollable thead tr {
@@ -85,9 +64,9 @@
     }
   table.shifts .watch { width: 40px; text-align:center; }
   table.shifts .num    { width: 25px; text-align:center; }
-  table.shifts .name     { width: 110px; text-align:center; }
+  table.shifts .name     { width: 107px; text-align:center; }
   table.shifts .area  { width: 40px; text-align:center; }
-  table.shifts .off   { width: 20px; text-align:center; }
+  table.shifts .off   { width: 35px; text-align:center; }
   table.shifts .hours   { width: 20px; text-align:center; }
   table.shifts .weekly   { width: 30px; text-align:center; }
   table.shifts .sun   { width: 110px; text-align:center; }
