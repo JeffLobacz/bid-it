@@ -5,6 +5,7 @@ class ShiftsController < ApplicationController
   end
 
   def new
+    @shifts = Shift.all
   end
 
   def create

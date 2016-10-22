@@ -1,3 +1,4 @@
 class Shift < ActiveRecord::Base
-  has_many :sundays
+  scope :sort_by_days_off, -> { order(days_off: :asc) }
+
 end

@@ -1,2 +1,208 @@
-<h1>Shifts#new</h1>
-<p>Find me in app/views/shifts/new.html.erb</p>
+<h4><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h4>
+<div class="row">
+  <h5>
+    <div class="col-md-4">
+        <form action="">
+          <input type="radio" name="watched" value="false"> Full Bid <br><input type="radio" name="watched" value="true"> Watchlist
+        </form>
+    </div>
+    <div class="col-md-4">
+      <div class="center">
+        <form action="">
+          <div class="left">
+            <input type="radio" name="watched" value="false"> Sorted ><br><input type="radio" name="watched" value="true"> Unsorted
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="right">
+        <!-- <div class="right"> -->
+          <form action="">
+            <input type="radio" name="watched" value="false"> All Shifts <br><input type="radio" name="watched" value="true"> Open Shifts Only
+          </form>
+
+      </div>
+    </div>
+  </h5>
+</div>
+<br>
+
+<style>
+  .center {
+    text-align: center;
+  }
+  .right {
+    text-align: right;
+  }
+  .left {
+    text-align: left:
+  }
+  tr:nth-child(even){background-color: #f2f2f2}*/
+* { padding: 0; margin: 0; }
+  table.shifts {
+    font-family: verdana;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+    }
+  table.shifts th, table.shifts td {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 2px;
+    height: 30px;
+    }
+  table.shifts th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  div.scrollableContainer {
+    position: relative;
+    width: 100%;
+    border: 1px solid black;
+    padding-top: 2.2em;
+    }
+  div.scrollingArea {
+    height: 450px;
+    overflow: auto;
+    }
+  table.scrollable thead tr {
+    left: 0; top: 0;
+    position: absolute;
+    }
+  table.shifts .watch { width: 40px; text-align:center; }
+  table.shifts .num    { width: 25px; text-align:center; }
+  table.shifts .name     { width: 107px; text-align:center; }
+  table.shifts .area  { width: 40px; text-align:center; }
+  table.shifts .off   { width: 35px; text-align:center; }
+  table.shifts .hours   { width: 20px; text-align:center; }
+  table.shifts .weekly   { width: 30px; text-align:center; }
+  table.shifts .sun   { width: 110px; text-align:center; }
+  table.shifts .mon   { width: 110px; text-align:center; }
+  table.shifts .tue   { width: 110px; text-align:center; }
+  table.shifts .wed   { width: 110px; text-align:center; }
+  table.shifts .thu   { width: 110px; text-align:center; }
+  table.shifts .fri   { width: 110px; text-align:center; }
+  table.shifts .sat   { width: 110px; text-align:center; }
+</style>
+
+<div class="scrollableContainer">
+  <div class="scrollingArea">
+    <table class="shifts scrollable">
+      <thead>
+        <tr>
+          <th><div class="watch">Watch</div></th>
+          <th><div class="num">#</div></th>
+          <th><div class="name">Name</div></th>
+          <th><div class="area">Area</div></th>
+          <th><div class="off">Off</div></th>
+          <th><div class="hours">Hrs</div></th>
+          <th><div class="weekly">Wk</div></th>
+          <th><div class="sun">Sunday</div></th>
+          <th><div class="mon">Monday</div></th>
+          <th><div class="tue">Tuesday</div></th>
+          <th><div class="wed">Wednesday</div></th>
+          <th><div class="thu">Thursday</div></th>
+          <th><div class="fri">Friday</div></th>
+          <th><div class="sat">Saturday</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @shifts.each do |shift| %>
+            <tr>
+              <% if shift.employment_status == "CC" %>
+                <% if shift.watched == true %>
+                  <td><div class="watch"><div class="glyphicon glyphicon-check"></div></div></td>
+                <% else %>
+                  <td><div class="watch"><div class="glyphicon glyphicon-unchecked"></div></div></td>
+                <% end %>
+                  <td><div class="num"><%= shift.shift_number %></div></td>
+                <% if Seniority.find_by(shift: shift.shift_number) != nil %>
+                  <td><div class="name"><%= Seniority.find_by(shift: shift.shift_number).first_name + " " + Seniority.find_by(shift: shift.shift_number).last_name %></div></td>
+                <% else %>
+                  <td><div class="name"></div></td>
+                <% end %>
+                <td><div class="area"><%= shift.detail_location %></div></td>
+                <td><div class="off"><%= shift.days_off %></div></td>
+                <td><div class="hours"><%= shift.day_hours %></div></td>
+                <td><div class="weekly"><%= shift.total_hours %></div></td>
+                <% unless shift.days_off.include? "S" %>
+                  <td>
+                    <div class="sun">
+                      <%= shift.sun_start_time.strftime("%H%M") %>-<%= shift.sun_quit_time.strftime("%H%M") %>
+                      <b><%= shift.sun_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><div class="sun">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "M" %>
+                  <td>
+                    <div class="mon">
+                      <%= shift.mon_start_time.strftime("%H%M") %>-<%= shift.mon_quit_time.strftime("%H%M") %>
+                      <h style="color:rgb(255,0,0)"><%= shift.mon_location %>
+                    </div>
+                  </td>
+                <% else %>
+                <td><div class="mon">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "T" %>
+                  <td>
+                    <div class="tue">
+                      <%= shift.tue_start_time.strftime("%H%M") %>-<%= shift.tue_quit_time.strftime("%H%M") %>
+                      <b><%= shift.tue_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><div class="tue">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "W" %>
+                  <td>
+                    <div class="wed">
+                      <%= shift.wed_start_time.strftime("%H%M") %>-<%= shift.wed_quit_time.strftime("%H%M") %>
+                      <b><%= shift.wed_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                <td><div class="wed">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "Q" %>
+                  <td>
+                    <div class="thu">
+                      <%= shift.thu_start_time.strftime("%H%M") %>-<%= shift.thu_quit_time.strftime("%H%M") %>
+                      <b><%= shift.thu_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><div class="thu">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "F" %>
+                  <td>
+                    <div class="fri">
+                      <%= shift.fri_start_time.strftime("%H%M") %>-<%= shift.fri_quit_time.strftime("%H%M") %>
+                      <b><%= shift.fri_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><div class="fri">off</div></td>
+                <% end %>
+                <% unless shift.days_off.include? "J" %>
+                  <td>
+                    <div class="sat">
+                      <%= shift.sat_start_time.strftime("%H%M") %>-<%= shift.sat_quit_time.strftime("%H%M") %>
+                      <b><%= shift.sat_location %></b>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><div class="sat">off</div></td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
