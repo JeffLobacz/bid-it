@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028004735) do
+ActiveRecord::Schema.define(version: 20161028015817) do
 
   create_table "shifts", force: :cascade do |t|
     t.string   "main_location"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20161028004735) do
     t.integer  "bid_number"
     t.string   "first_name"
     t.string   "last_name"
-    t.date     "user"
+    t.date     "seniority"
     t.integer  "shift"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

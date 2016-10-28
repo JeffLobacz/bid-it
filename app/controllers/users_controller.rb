@@ -32,5 +32,5 @@ end
 private
 
 def user_params
-  params.require(:user).permit(:employment_status, :first_name, :last_name, :employee_number, :user, :qualification)
+  params.require(:user).permit(:employment_status, :first_name, :last_name, :employee_number, :seniority, :qualification)
 end
