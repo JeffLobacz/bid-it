@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :bid_number
       t.string :first_name
       t.string :last_name
-      t.date :user
+      t.date :seniority
       t.integer :shift
 
       t.timestamps null: false
