@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   #
   # get 'shifts/create'
 
-  # get 'seniorities/index'
+  # get 'users/index'
 
-  get 'seniorities/cc'
-  get 'seniorities/ft'
-  get 'seniorities/pt'
+  get 'users/cc'
+  get 'users/ft'
+  get 'users/pt'
 
   get 'shifts/cc'
   get 'shifts/cc_open'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :seniorities, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create]
 
   resources :shifts, only: [:index, :new, :create]
 
