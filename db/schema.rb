@@ -11,21 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009021621) do
-
-  create_table "seniorities", force: :cascade do |t|
-    t.string   "employment_status"
-    t.integer  "bid_number"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.date     "seniority"
-    t.integer  "shift"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "employee_number"
-    t.datetime "bid_time"
-    t.string   "qualification"
-  end
+ActiveRecord::Schema.define(version: 20161028004735) do
 
   create_table "shifts", force: :cascade do |t|
     t.string   "main_location"
@@ -63,16 +49,23 @@ ActiveRecord::Schema.define(version: 20161009021621) do
     t.integer  "total_hours"
     t.integer  "day_hours"
     t.string   "crew_chief"
+    t.integer  "hrs_per_day_pref"
   end
 
-  create_table "sundays", force: :cascade do |t|
-    t.time     "start_time"
-    t.time     "quit_time"
-    t.string   "location"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "shift_number"
-    t.integer  "shift_id"
+  create_table "users", force: :cascade do |t|
+    t.string   "employment_status"
+    t.integer  "bid_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "user"
+    t.integer  "shift"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "employee_number"
+    t.datetime "bid_time"
+    t.string   "qualification"
+    t.integer  "eight_hrs_per_day_rank"
+    t.integer  "ten_hrs_per_day_rank"
   end
 
 end

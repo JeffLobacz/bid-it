@@ -1,4 +1,4 @@
-<h2><u><%= link_to "Bid Times", seniorities_path %></u> > Part-Time <%= link_to "Add Employee", new_seniority_path, class: 'btn btn-success' %></h2>
+<h2><u><%= link_to "Bid Times", users_path %></u> > Full-Time <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %></h2>
 <br>
 <style>
   table {
@@ -24,19 +24,19 @@
     <th>Last Name</th>
     <th>First Name</th>
     <th>Empl.#</th>
-    <th>Occ. Seniority</th>
+    <th>Occ. User</th>
     <th>Qual.</th>
     <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
-  <% @employees.sort_by_seniority.each do |employee| %>
+  <% @employees.sort_by_user.each do |employee| %>
     <tr>
-      <% if employee.employment_status == "PT" %>
+      <% if employee.employment_status == "FT" %>
         <td><%= employee.bid_number %></td>
         <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>
         <td><%= employee.employee_number %></td>
-        <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
+        <td><%= employee.user.strftime("%m-%d-%Y") %></td>
         <% if employee.qualification || "select" %>
           <td><%= employee.qualification %></td>
         <% end %>

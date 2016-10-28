@@ -1,4 +1,5 @@
-<h2><u><%= link_to "Bid Times", seniorities_path %></u> > Full-Time <%= link_to "Add Employee", new_seniority_path, class: 'btn btn-success' %></h2>
+<h2><u><%= link_to "Bid Times", users_path %></u> > Crew-Chiefs <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %></h2>
+
 <br>
 <style>
   table {
@@ -20,26 +21,29 @@
 </style>
 <table>
   <tr>
+    <!-- <th>Watch</th> -->
     <th>Bid#</th>
     <th>Last Name</th>
     <th>First Name</th>
     <th>Empl.#</th>
-    <th>Occ. Seniority</th>
+    <th>Occ. User</th>
     <th>Qual.</th>
     <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
-  <% @employees.sort_by_seniority.each do |employee| %>
+  <% @employees.sort_by_user.each do |employee| %>
     <tr>
-      <% if employee.employment_status == "FT" %>
+      <% if employee.employment_status == "CC" %>
+        <!-- <td><%#= employee.bid_number %></td> -->
         <td><%= employee.bid_number %></td>
         <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>
         <td><%= employee.employee_number %></td>
-        <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <% if employee.qualification || "select" %>
+        <td><%= employee.user.strftime("%m-%d-%Y") %></td>
+        <% if employee.qualification != "select" %>
           <td><%= employee.qualification %></td>
         <% end %>
+        <%# The following line is commented out for production env. error %>
         <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <td><%= employee.shift %></td>
       <% end %>

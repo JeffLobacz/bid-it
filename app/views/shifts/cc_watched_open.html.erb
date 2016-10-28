@@ -40,7 +40,7 @@
     <th>Saturday</th>
   </tr>
   <% @shifts.each do |shift| %>
-    <% if shift.employment_status == "CC" && shift.watched == true && Seniority.find_by(shift: shift.shift_number) == nil %>
+    <% if shift.employment_status == "CC" && shift.watched == true && User.find_by(shift: shift.shift_number) == nil %>
       <tr>
         <% if shift.watched == true %>
           <td><div class="glyphicon glyphicon-check"></div></td>
@@ -48,8 +48,8 @@
           <td><div class="glyphicon glyphicon-unchecked"></div></td>
         <% end %>
         <td><%= shift.shift_number %></td>
-        <% if Seniority.find_by(shift: shift.shift_number) != nil %>
-          <td><%= Seniority.find_by(shift: shift.shift_number).first_name + " " + Seniority.find_by(shift: shift.shift_number).last_name %></td>
+        <% if User.find_by(shift: shift.shift_number) != nil %>
+          <td><%= User.find_by(shift: shift.shift_number).first_name + " " + User.find_by(shift: shift.shift_number).last_name %></td>
         <% else %>
           <td></td>
         <% end %>
