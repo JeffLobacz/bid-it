@@ -18,7 +18,7 @@ shift_array = []
   x += 1
 end
 bid_number = 1
-user = Faker::Date.between(50.years.ago, 40.years.ago)
+seniority = Faker::Date.between(50.years.ago, 40.years.ago)
 employee_number = Faker::Number.between(100000, 110000)
 bid_time = DateTime.new(2017,1,9,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
@@ -30,14 +30,14 @@ workgroup_number.times do
     first_name:             Faker::Name.first_name,
     last_name:              Faker::Name.last_name,
     employee_number:        employee_number,
-    user:              user,
+    seniority:              seniority,
     bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
     shift:                  shift_array_selection,
   )
   bid_number += 1
   random_amount = Faker::Date.between(1.years, 1.day)
-  user += random_amount
+  seniority += random_amount
   random_number = Faker::Number.between(1,200)
   employee_number += random_number
   bid_time = bid_time + 5.minutes
