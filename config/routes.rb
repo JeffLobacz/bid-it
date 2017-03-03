@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'workareas/index'
+
+  get 'workareas/show'
+
   # get 'shifts/index'
   #
   # get 'shifts/new'
