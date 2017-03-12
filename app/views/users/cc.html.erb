@@ -1,4 +1,4 @@
-<h2><u><%= link_to "Bid Times", users_path %></u> > Crew-Chiefs <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %></h2>
+<h2><u><%= link_to "Bid Times", users_path %></u> > Crew-Chiefs <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %>  <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %></h2>
 
 <br>
 <style>
@@ -45,7 +45,11 @@
         <% end %>
         <%# The following line is commented out for production env. error %>
         <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
-        <td><%= employee.shift %></td>
+        <% if employee.shift == nil  %>
+          <td><%= link_to "Bid", users_cc_path, class: 'btn btn-success' %></td>
+        <% else %>
+          <td><%= employee.shift %></td>
+        <% end %>
       <% end %>
     </tr>
   <% end %>

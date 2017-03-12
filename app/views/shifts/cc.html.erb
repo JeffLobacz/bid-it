@@ -1,18 +1,27 @@
 <%# Update the top portion of this view to reflect the settings for the view attributes %>
-<h4><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h4>
+<div class="row">
+  <div class="col-md-5">
+    <h4><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h4>
+  </div>
+  <div class="col-md-2">
+    <div class="center">
+      <%= link_to "Bid Times", users_cc_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
 <div class="row">
   <h5>
     <div class="col-md-4">
-        <b>Full Bid</b> | <u><i><%= link_to "Watchlist", shifts_cc_watched_path %></i></u>
+        <u><i><%= link_to "Watchlist Only", shifts_cc_watched_path %></i></u>
     </div>
     <div class="col-md-4">
-      <div class="center"
-        <b>Sort by Shift#</b> | <u><i><%= link_to "Sort by Preferences", shifts_cc_open_path %></i></u>
+      <div class="center">
+        <u><i><%= link_to "Sort by Preferences", shifts_cc_open_path %></i></u>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="right"
-        <b>All Shifts</b> | <u><i><%= link_to "Open Shifts Only", shifts_cc_open_path %></i></u>
+      <div class="right">
+        <u><i><%= link_to "Open Shifts Only", shifts_cc_open_path %></i></u>
       </div>
     </div>
   </h5>
