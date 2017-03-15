@@ -1,4 +1,20 @@
-<h2><u><%= link_to "Bid Times", users_path %></u> > Crew-Chiefs <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %>  <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %></h2>
+<div class="row">
+  <p>
+  <div class="col-md-5">
+    <h4><u><i><%= link_to "Bid Times", users_path %></i></u> > <b>Crew-Chiefs</b></h4>
+  </div>
+  <div class="col-md-5">
+    <div class="center">
+      <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="right">
+      <%= link_to "Add Employee", new_user_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
+
 
 <br>
 <style>
@@ -46,7 +62,8 @@
         <%# The following line is commented out for production env. error %>
         <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
         <% if employee.shift == nil  %>
-          <td><%= link_to "Bid", users_cc_path, class: 'btn btn-success' %></td>
+          <%# @bidder = employee %>
+          <td><%= link_to "Bid", users_bid_path(id: employee.id), class: 'btn btn-success' %></td>
         <% else %>
           <td><%= employee.shift %></td>
         <% end %>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'users/cc'
   get 'users/ft'
   get 'users/pt'
+  get 'users/bid'
 
   get 'shifts/cc'
   get 'shifts/cc_open'

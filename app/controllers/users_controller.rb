@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def bid
+    @employee = User.find(params[:id])
+    # @topic = Topic.find(params[:id])
+
+  end
+
 
   def cc
     @employees = User.all
