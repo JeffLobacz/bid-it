@@ -15,12 +15,22 @@ class UsersController < ApplicationController
     end
   end
 
-  def bid
+  def edit
     @employee = User.find(params[:id])
-    # @topic = Topic.find(params[:id])
-
   end
 
+  def update
+    @employee = User.find(params[:id])
+    @employee.assign_attributes(user_params)
+
+    if @employee.save
+      # flash[:notice] = "Post was saved."
+      redirect_to users_cc_path
+    else
+      # flash[:error] = "There was an error saving the post. Please try again."
+      render :edit
+    end
+  end
 
   def cc
     @employees = User.all
@@ -38,5 +48,5 @@ end
 private
 
 def user_params
-  params.require(:user).permit(:employment_status, :first_name, :last_name, :employee_number, :seniority, :qualification)
+  params.require(:user).permit(:employment_status, :first_name, :last_name, :employee_number, :seniority, :qualification, :shift)
 end

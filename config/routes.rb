@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get 'users/cc'
   get 'users/ft'
   get 'users/pt'
-  get 'users/bid'
 
   get 'shifts/cc'
   get 'shifts/cc_open'
@@ -29,7 +28,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create, :edit, :update]
 
   resources :shifts, only: [:index, :new, :create]
 

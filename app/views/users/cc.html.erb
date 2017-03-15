@@ -47,25 +47,39 @@
     <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
+  <% bid_number = 0 %>
+  <% bid_begins = DateTime.new(2017,2,18,5) %>
+  <% bidding_begins = bid_begins - 2.weeks %>
+  <% current_bidder = nil %>
   <% @employees.sort_by_seniority.each do |employee| %>
     <tr>
       <% if employee.employment_status == "CC" %>
-        <!-- <td><%#= employee.bid_number %></td> -->
-        <td><%= employee.bid_number %></td>
+        <% bid_number += 1 %>
+        <td><%= bid_number %></td>
         <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>
         <td><%= employee.employee_number %></td>
         <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <% if employee.qualification != "select" %>
+        <% if employee.qualification != nil && employee.qualification != "select"%>
           <td><%= employee.qualification %></td>
-        <% end %>
-        <%# The following line is commented out for production env. error %>
-        <td><%#= employee.bid_time.strftime("%b %d %H:%M") %></td>
-        <% if employee.shift == nil  %>
-          <%# @bidder = employee %>
-          <td><%= link_to "Bid", users_bid_path(id: employee.id), class: 'btn btn-success' %></td>
         <% else %>
+          <td></td>
+        <% end %>
+        <% if bid_number == 1 %>
+          <% bid_time = bidding_begins %>
+        <% else %>
+          <%# bid_time += 5.minutes %>
+        <% end %>
+        <td><%= bid_time %></td>
+        <% if employee.shift != nil  %>
           <td><%= employee.shift %></td>
+        <% else %>
+            <% if bid_number - 1 != current_bidder %>
+              <td><%= link_to "Bid", edit_user_path(id: employee.id), class: 'btn btn-success' %></td>
+              <% current_bidder = bid_number %>
+            <% else %>
+              <td>--</td> 
+          <% end %>
         <% end %>
       <% end %>
     </tr>
