@@ -42,15 +42,17 @@
     <th>Last Name</th>
     <th>First Name</th>
     <th>Empl.#</th>
-    <th>Occ. User</th>
+    <th>Occ. Sen.</th>
     <th>Qual.</th>
     <th>Bid Time</th>
     <th>Shift#</th>
   </tr>
   <% bid_number = 0 %>
-  <% bid_begins = DateTime.new(2017,2,18,5) %>
-  <% bidding_begins = bid_begins - 2.weeks %>
-  <% current_bidder = nil %>
+  <% bid_begins = DateTime.new(2017,5,13,5) %>
+  <% bidding_begins = bid_begins - 2.weeks - 5.days %>
+  <% bid_time = Time.new %>
+  <% waiting_on_bidder = false %>
+  <%# current_bidder = 0 %>
   <% @employees.sort_by_seniority.each do |employee| %>
     <tr>
       <% if employee.employment_status == "CC" %>
@@ -58,29 +60,32 @@
         <td><%= bid_number %></td>
         <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>
-        <td><%= employee.employee_number %></td>
+        <td><%= link_to employee.employee_number, edit_user_path(employee) %></td>
         <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
-        <% if employee.qualification != nil && employee.qualification != "select"%>
+
+        <% if employee.qualification != nil && employee.qualification != "select" %>
           <td><%= employee.qualification %></td>
         <% else %>
-          <td></td>
+          <td>--</td>
         <% end %>
+
         <% if bid_number == 1 %>
           <% bid_time = bidding_begins %>
         <% else %>
-          <%# bid_time += 5.minutes %>
+          <% bid_time += 5.minutes %>
         <% end %>
-        <td><%= bid_time %></td>
-        <% if employee.shift != nil  %>
+        <td><%= bid_time.strftime("%a %m-%d %H:%M") %></td>
+
+        <% if employee.shift != nil && waiting_on_bidder == false %>
           <td><%= employee.shift %></td>
-        <% else %>
-            <% if bid_number - 1 != current_bidder %>
-              <td><%= link_to "Bid", edit_user_path(id: employee.id), class: 'btn btn-success' %></td>
-              <% current_bidder = bid_number %>
-            <% else %>
-              <td>--</td> 
-          <% end %>
+        <% elsif employee.shift == nil && waiting_on_bidder == false %>
+          <td><%= link_to "Bid", edit_user_path(id: employee.id), class: 'btn btn-success' %></td>
+          <% waiting_on_bidder = true %>
+          <%# current_bidder = bid_number %>
+        <%# elsif employee.shift != nil && waiting_on_bidder == true %>
+          <!-- <td></td> -->
         <% end %>
+
       <% end %>
     </tr>
   <% end %>

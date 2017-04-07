@@ -22,14 +22,34 @@ class UsersController < ApplicationController
   def update
     @employee = User.find(params[:id])
     @employee.assign_attributes(user_params)
+    # @shift_employee_number = Shift.find()@employee.employee_number
+    # @slot = Shift.find_by(id: @employee.shift)
+    # User.find_by(shift: shift.shift_number) != nil
+    # @shift_taken.employee_number. @employee.employee_number) == nil
+    # @slot = Shift.find_by(User.find_by(shift: ))
 
-    if @employee.save
-      # flash[:notice] = "Post was saved."
-      redirect_to users_cc_path
-    else
-      # flash[:error] = "There was an error saving the post. Please try again."
-      render :edit
-    end
+      if @employee.save
+        # flash[:notice] = "Post was saved."
+
+
+        @slot = Shift.find_by(id: @employee.shift)
+        @slot.assign_attributes(employee_number: @employee.employee_number)
+        @slot.assign_attributes(last_name: @employee.last_name)
+        @slot.assign_attributes(first_name: @employee.first_name)
+          if @slot.save
+            # flash[:notice] = "Post was saved."
+            # redirect_to users_cc_path
+          else
+            # flash[:error] = "There was an error saving the post. Please try again."
+            # render :edit
+          end
+
+
+        redirect_to users_cc_path
+      else
+        # flash[:error] = "There was an error saving the post. Please try again."
+        render :edit
+      end
   end
 
   def cc

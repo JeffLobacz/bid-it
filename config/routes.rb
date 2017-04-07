@@ -4,14 +4,6 @@ Rails.application.routes.draw do
 
   get 'workareas/show'
 
-  # get 'shifts/index'
-  #
-  # get 'shifts/new'
-  #
-  # get 'shifts/create'
-
-  # get 'users/index'
-
   get 'users/cc'
   get 'users/ft'
   get 'users/pt'
