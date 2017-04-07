@@ -82,8 +82,8 @@
           <td><%= link_to "Bid", edit_user_path(id: employee.id), class: 'btn btn-success' %></td>
           <% waiting_on_bidder = true %>
           <%# current_bidder = bid_number %>
-        <%# elsif employee.shift != nil && waiting_on_bidder == true %>
-          <!-- <td></td> -->
+        <% elsif waiting_on_bidder == true %>
+          <td>--</td>
         <% end %>
 
       <% end %>
