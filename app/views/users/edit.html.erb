@@ -1,0 +1,20 @@
+<p>
+<div class="row">
+  <div class="col-md-5">
+  </div>
+  <div class="col-md-4">
+    <div class="right">
+      <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
+
+<h3><b>Employee: <%= @employee.first_name %> <%= @employee.last_name %></b></h3>
+<%= form_for @employee do |f| %>
+  <p>
+  <%= f.number_field :shift, class: 'number_field', placeholder: "Enter Bid#" %>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
+<% end %>

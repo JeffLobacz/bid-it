@@ -1,0 +1,11 @@
+<u><h3>Work Areas</h3></u>
+<div class="container">
+  <h4>
+    <ul>
+      <% @workareas.each do |workarea| %>
+        <li><u><i><%= link_to workarea.title %></i></u></li>
+        <br>
+      <% end %>
+    </ul>
+  </h4>
+</div>

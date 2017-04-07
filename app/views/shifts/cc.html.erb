@@ -1,18 +1,28 @@
 <%# Update the top portion of this view to reflect the settings for the view attributes %>
-<h4><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h4>
+<div class="row">
+  <p>
+  <div class="col-md-5">
+    <h4><u><i><%= link_to "Bid Sheets", shifts_path %></i></u> > <b>Crew-Chief: Full Bid / All Shifts </b></h4>
+  </div>
+  <div class="col-md-2">
+    <div class="center">
+      <%= link_to "Bid Times", users_cc_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
 <div class="row">
   <h5>
     <div class="col-md-4">
-        <b>Full Bid</b> | <u><i><%= link_to "Watchlist", shifts_cc_watched_path %></i></u>
+        <u><i><%= link_to "Watchlist Only", shifts_cc_watched_path %></i></u>
     </div>
     <div class="col-md-4">
-      <div class="center"
-        <b>Sort by Shift#</b> | <u><i><%= link_to "Sort by Preferences", shifts_cc_open_path %></i></u>
+      <div class="center">
+        <u><i><%= link_to "Sort by Preferences", shifts_cc_open_path %></i></u>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="right"
-        <b>All Shifts</b> | <u><i><%= link_to "Open Shifts Only", shifts_cc_open_path %></i></u>
+      <div class="right">
+        <u><i><%= link_to "Open Shifts Only", shifts_cc_open_path %></i></u>
       </div>
     </div>
   </h5>
@@ -109,8 +119,10 @@
                   <td><div class="watch"><div class="glyphicon glyphicon-unchecked"></div></div></td>
                 <% end %>
                   <td><div class="num"><%= shift.shift_number %></div></td>
-                <% if User.find_by(shift: shift.shift_number) != nil %>
-                  <td><div class="name"><%= User.find_by(shift: shift.shift_number).first_name + " " + User.find_by(shift: shift.shift_number).last_name %></div></td>
+                  <%# if User.find_by(shift: shift.shift_number) != nil %>
+                  <% if shift != nil %>
+                  <!-- <td><div class="name"><%#= User.find_by(shift: shift.shift_number).first_name + " " + User.find_by(shift: shift.shift_number).last_name %></div></td> -->
+                  <td><div class="name"><%= shift.first_name%> <%= shift.last_name %></div></td>
                 <% else %>
                   <td><div class="name"></div></td>
                 <% end %>

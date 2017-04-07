@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
-  # get 'shifts/index'
-  #
-  # get 'shifts/new'
-  #
-  # get 'shifts/create'
+  get 'workareas/index'
 
-  # get 'users/index'
+  get 'workareas/show'
 
   get 'users/cc'
   get 'users/ft'
@@ -24,7 +20,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create, :edit, :update]
 
   resources :shifts, only: [:index, :new, :create]
 
