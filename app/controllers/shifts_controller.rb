@@ -34,5 +34,4 @@ class ShiftsController < ApplicationController
   def pt
     @shifts = Shift.all
   end
-
 end

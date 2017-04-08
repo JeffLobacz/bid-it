@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
     @employee = User.find(params[:id])
   end
@@ -24,23 +27,10 @@ class UsersController < ApplicationController
     @employee.assign_attributes(user_params)
 
     if @employee.save
-      # flash[:notice] = "Post was saved."
-
-      @schedule = Shift.find_by(id: @employee.shift)
-      @schedule.assign_attributes(employee_number: @employee.employee_number)
-      @schedule.assign_attributes(last_name: @employee.last_name)
-      @schedule.assign_attributes(first_name: @employee.first_name)
-        if @schedule.save
-          # flash[:notice] = "Post was saved."
-          # redirect_to users_cc_path
-        else
-          # flash[:error] = "There was an error saving the post. Please try again."
-          # render :edit
-        end
-
+      flash[:notice] = "User table was updated."
       redirect_to users_cc_path
     else
-      # flash[:error] = "There was an error saving the post. Please try again."
+      flash[:error] = "There was an error updating the User table. Please try again."
       render :edit
     end
 
@@ -58,6 +48,7 @@ class UsersController < ApplicationController
     @employees = User.all
   end
 end
+
 
 private
 
