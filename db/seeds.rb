@@ -8,22 +8,18 @@
 require 'faker'
 
 # Number of employees for each employment_status
-workgroup_number = 10
 number_of_cc_shifts = 30
 
 # Create CC list
-shift_array = []
-(number_of_cc_shifts - 5).times do |x|
-  shift_array << x + 1
-  x += 1
-end
+# shift_array = []
+# number_of_cc_shifts.times do |x|
+#   shift_array << x + 1
+# end
 bid_number = 1
 seniority = Faker::Date.between(50.years.ago, 40.years.ago)
 employee_number = Faker::Number.between(100000, 110000)
-bid_time = DateTime.new(2017,1,9,5)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
-workgroup_number.times do
-  shift_array_selection = shift_array.delete_at(rand(shift_array.length))
+number_of_cc_shifts.times do
   User.create!(
     employment_status:      "CC",
     bid_number:             bid_number,
@@ -31,16 +27,13 @@ workgroup_number.times do
     last_name:              Faker::Name.last_name,
     employee_number:        employee_number,
     seniority:              seniority,
-    bid_time:               bid_time,
     qualification:          qualified_array[rand(qualified_array.length)],
-    shift:                  shift_array_selection,
   )
   bid_number += 1
-  random_amount = Faker::Date.between(1.years, 1.day)
-  seniority += random_amount
   random_number = Faker::Number.between(1,200)
   employee_number += random_number
-  bid_time = bid_time + 5.minutes
+  random_amount = Faker::Date.between(1.years, 1.day)
+  seniority += random_amount
 end
 
 # Create FT list
@@ -94,7 +87,6 @@ end
 #   employee_number += random_number
 #   bid_time = bid_time + 5.minutes
 # end
-
 users = User.all
 
 # Create CC Shifts
