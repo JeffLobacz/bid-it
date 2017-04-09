@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     @employee.assign_attributes(user_params)
 
     if @employee.save
-      flash[:notice] = "User table was updated."
-      redirect_to users_cc_path
+      # flash[:notice] = "User table was updated."
+      redirect_to edit_user_path
     else
       flash[:error] = "There was an error updating the User table. Please try again."
       render :edit

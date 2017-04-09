@@ -1,20 +1,60 @@
 <p>
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-10">
+    <%= link_to "Bid Times", users_cc_path, class: 'btn btn-success' %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     <div class="right">
       <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %>
     </div>
   </div>
 </div>
-
-<h3><b>Employee: <%= @employee.first_name %> <%= @employee.last_name %></b></h3>
-<%= form_for @employee do |f| %>
+<br>
+<div class="center">
+  <h4 style="display: inline">Bidder:  </h4><h2 style="display: inline; color:red"><%= @employee.first_name %> <%= @employee.last_name %></h2>
+  <br>
+  <h4 style="display: inline">Employee #:  </h4><h3 style="display: inline; color:red"><%= @employee.employee_number %></h3>
   <p>
-  <%= f.number_field :shift, class: 'number_field', placeholder: "Enter Bid#" %>
-
-  <div class="form-group">
-    <%= f.submit "Save", class: 'btn btn-success' %>
+  <%= form_for @employee do |f| %>
+    <%= f.number_field :shift, class: 'number_field', placeholder: "Enter Shift #" %>
+    <p>
+    <div class="form-group">
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
+<br>
+<div class="center">
+  <h4><u>Bidder's New Shift</u></h4>
+</div>
+<br>
+<% if @employee.shift != nil %>
+  <div class="center">
+    <div class="scrollableContainer">
+      <div class="scrollingArea">
+        <table class="shifts scrollable">
+          <thead>
+            <tr>
+              <th><div class="num">#</div></th>
+              <th><div class="area">Area</div></th>
+              <th><div class="off">Off</div></th>
+              <th><div class="hours">Hrs</div></th>
+              <th><div class="weekly">Wk</div></th>
+              <th><div class="sun">Sunday</div></th>
+              <th><div class="mon">Monday</div></th>
+              <th><div class="tue">Tuesday</div></th>
+              <th><div class="wed">Wednesday</div></th>
+              <th><div class="thu">Thursday</div></th>
+              <th><div class="fri">Friday</div></th>
+              <th><div class="sat">Saturday</div></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <div class="center"><%= link_to "OK", users_cc_path, class: 'btn btn-success' %></div>
 <% end %>

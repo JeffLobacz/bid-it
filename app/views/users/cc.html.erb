@@ -4,9 +4,7 @@
     <h4><u><i><%= link_to "Bid Times", users_path %></i></u> > <b>Crew-Chiefs</b></h4>
   </div>
   <div class="col-md-5">
-    <div class="center">
-      <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %>
-    </div>
+    <%= link_to "Bid Sheet", shifts_cc_path, class: 'btn btn-success' %>
   </div>
   <div class="col-md-2">
     <div class="right">
@@ -39,8 +37,8 @@
   <tr>
     <!-- <th>Watch</th> -->
     <th>Bid#</th>
-    <th>Last Name</th>
     <th>First Name</th>
+    <th>Last Name</th>
     <th>Empl.#</th>
     <th>Occ. Sen.</th>
     <th>Qual.</th>
@@ -58,8 +56,8 @@
       <% if employee.employment_status == "CC" %>
         <% bid_number += 1 %>
         <td><%= bid_number %></td>
-        <td><%= employee.last_name %></td>
         <td><%= employee.first_name %></td>
+        <td><%= employee.last_name %></td>
         <td><%= employee.employee_number %></td>
         <td><%= employee.seniority.strftime("%m-%d-%Y") %></td>
 
