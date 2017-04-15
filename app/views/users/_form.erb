@@ -1,10 +1,10 @@
-<%= form_for @employee do |f| %>
+<%= form_for @user do |f| %>
     <p>
     <%= f.text_field :first_name, class: 'form-control', placeholder: "First name" %>
     <p>
     <%= f.text_field :last_name, class: 'form-control', placeholder: "Last name" %>
     <p>
-    <%= f.text_field :employee_number, class: 'form-control', placeholder: "Employee number" %>
+    <%= f.text_field :employee_number, class: 'form-control', placeholder: "user number" %>
     <p>
       <%= f.label :employment_status %>:
       <%= f.select :employment_status, ["CC", "FT", "PT"] %>

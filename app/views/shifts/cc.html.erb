@@ -118,14 +118,14 @@
                 <% else %>
                   <td><div class="watch"><div class="glyphicon glyphicon-unchecked"></div></div></td>
                 <% end %>
-                  <td><div class="num"><%= shift.id %></div></td>
-                  <%# if User.find_by(shift: shift.shift_number) != nil %>
-                  <% if shift != nil %>
-                  <!-- <td><div class="name"><%#= User.find_by(shift: shift.shift_number).first_name + " " + User.find_by(shift: shift.shift_number).last_name %></div></td> -->
-                  <td><div class="name"><%= shift.first_name%> <%= shift.last_name %></div></td>
+                <td><div class="num"><%= shift.id %></div></td>
+
+                <% if shift.user_id != nil %>
+                  <td><div class="name"><%= shift.first_name %> <%= shift.last_name %></div></td>
                 <% else %>
                   <td><div class="name"></div></td>
                 <% end %>
+
                 <td><div class="area"><%= shift.detail_location %></div></td>
                 <td><div class="off"><%= shift.days_off %></div></td>
                 <td><div class="hours"><%= shift.day_hours %></div></td>

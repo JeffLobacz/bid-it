@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
-# Number of employees for each employment_status
+# Number of users for each employment_status
 number_of_cc_shifts = 30
 
 # Create CC list
@@ -15,21 +15,21 @@ number_of_cc_shifts = 30
 # number_of_cc_shifts.times do |x|
 #   shift_array << x + 1
 # end
-bid_number = 1
+# bid_number = 1
 seniority = Faker::Date.between(50.years.ago, 40.years.ago)
 employee_number = Faker::Number.between(100000, 110000)
 qualified_array = ["Exp", "", "", "", "", "", "", ""]
 number_of_cc_shifts.times do
   User.create!(
     employment_status:      "CC",
-    bid_number:             bid_number,
+    # bid_number:             bid_number,
     first_name:             Faker::Name.first_name,
     last_name:              Faker::Name.last_name,
     employee_number:        employee_number,
     seniority:              seniority,
     qualification:          qualified_array[rand(qualified_array.length)],
   )
-  bid_number += 1
+  # bid_number += 1
   random_number = Faker::Number.between(1,200)
   employee_number += random_number
   random_amount = Faker::Date.between(1.years, 1.day)
@@ -90,7 +90,7 @@ end
 users = User.all
 
 # Create CC Shifts
-shift_number = 1
+# shift_number = 1
   # watched
 watched_array = [true, false]
   # Number of days off in weekend
@@ -159,13 +159,13 @@ number_of_cc_shifts.times do
     sat_start = start_times_array[rand(start_times_array.length)]
     sat_quit = sat_start + ((paid_hours+unpaid_hours)*60*60)
     weekly_hours += paid_hours
-    # @employee = User.find_by({shift: shift_number}).last_name,
+    # @user = User.find_by({shift: shift_number}).last_name,
   end
   Shift.create!(
     watched:                watched_array[rand(watched_array.length)],
     main_location:          "Ramp",
     detail_location:        "Line",
-    shift_number:           shift_number,
+    # shift_number:           shift_number,
     employment_status:      "CC",
     days_off:               weekend,
     sun_start_time:         sun_start,
@@ -193,7 +193,7 @@ number_of_cc_shifts.times do
     total_hours:            weekly_hours,
     # last_name:              bidder,
   )
-  shift_number += 1
+  # shift_number += 1
 end
 
 shifts = Shift.all
