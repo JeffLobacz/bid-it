@@ -1,4 +1,3 @@
-<%# @test = "Initial value" %>
 <p>
 <div class="row">
   <div class="col-md-10">
@@ -10,6 +9,17 @@
     </div>
   </div>
 </div>
+<br>
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
+    <h4><%= pluralize(@user.errors.count, "error") %>:</h4>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <br>
 <div class="center">
   <h4 style="display: inline">Bidder:  </h4><h2 style="display: inline; color:red"><%= @user.first_name %> <%= @user.last_name %></h2>
@@ -24,17 +34,3 @@
     </div>
   <% end %>
 </div>
-<br>
-<br>
-<% if @user.id != nil %>
-  user.id: <%= @user.id %>
-<% else %>
-  user.id is nil
-<% end %>
-<br>
-<% if @user.shift_id != nil %>
-  user.shift_id: <%= @user.shift_id %>
-<% else %>
-  user.shift_id is nil
-<% end %>
-<br>
