@@ -11,6 +11,9 @@ class ShiftsController < ApplicationController
   def create
   end
 
+  def update
+  end
+
   def cc
     @shifts = Shift.all
   end
@@ -34,4 +37,11 @@ class ShiftsController < ApplicationController
   def pt
     @shifts = Shift.all
   end
+
+  private
+
+  def shift_params
+    params.require(:shift).permit(:last_name)
+  end
+
 end
