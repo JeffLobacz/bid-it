@@ -1,5 +1,7 @@
 
 $(document).on "turbolinks:load", ->
   $("#myButton").click ->
-    $("#accordion").accordion();
-    # $("#text").fadeToggle();
+    $("#text").html("Hello Jeff");
+  $("#accordion").accordion();
+  $("#sortable").sortable();
+  # $("#weeklyShifts").disableSelection();
