@@ -91,6 +91,9 @@ users = User.all
 
 # Create CC Shifts
 # shift_number = 1
+  # detail_locations
+index_number = 0
+detail_location_array = %w[Line Supp. Relief]
   # watched
 watched_array = [true, false]
   # Number of days off in weekend
@@ -159,7 +162,7 @@ end
 Shift.create!(
   watched:                watched_array[rand(watched_array.length)],
   main_location:          "Ramp",
-  detail_location:        "Line",
+  detail_location:        detail_location_array[index_number],
   # shift_number:           shift_number,
   employment_status:      "CC",
   days_off:               weekend,
@@ -188,7 +191,10 @@ Shift.create!(
   total_hours:            weekly_hours,
   # last_name:              bidder,
 )
-# shift_number += 1
+  index_number += 1
+  if index_number == 3
+    index_number = 0
+  end
 end
 
 shifts = Shift.all
