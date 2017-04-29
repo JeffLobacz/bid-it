@@ -1,39 +1,208 @@
 <h1>Shift#show</h1>
 
-<%#= link_to "Comments", id: "comments-link" %>
+<style>
+  .center {
+    text-align: center;
+  }
+  .right {
+    text-align: right;
+  }
+  tr:nth-child(even){background-color: #f2f2f2}*/
+* { padding: 0; margin: 0; }
+  table.shifts {
+    font-family: verdana;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+    }
+  table.shifts th, table.shifts td {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 2px;
+    height: 30px;
+    }
+  table.shifts th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  div.scrollableContainer {
+    position: relative;
+    /*left: 25px;*/
+    width: 100%;
+    border: 1px solid black;
+    padding-top: 2.2em;
+    }
+  div.scrollingArea {
+    height: 350px;
+    /*width: 100%;*/
+    overflow: auto;
+    /*position: inherit;*/
+    }
+  table.scrollable thead tr {
+    left: 0; top: 0;
+    /*position: inherit;*/
+    }
+  table.shifts .watch { width: 40px; text-align:center; }
+  table.shifts .num    { width: 25px; text-align:center; }
+  table.shifts .name     { width: 107px; text-align:center; }
+  table.shifts .area  { width: 40px; text-align:center; }
+  table.shifts .off   { width: 35px; text-align:center; }
+  table.shifts .hours   { width: 20px; text-align:center; }
+  table.shifts .weekly   { width: 30px; text-align:center; }
+  table.shifts .sun   { width: 110px; text-align:center; }
+  table.shifts .mon   { width: 110px; text-align:center; }
+  table.shifts .tue   { width: 110px; text-align:center; }
+  table.shifts .wed   { width: 110px; text-align:center; }
+  table.shifts .thu   { width: 110px; text-align:center; }
+  table.shifts .fri   { width: 110px; text-align:center; }
+  table.shifts .sat   { width: 110px; text-align:center; }
+</style>
 
-<p id="text">Hello World!</p>
-<button id="myButton">Toggle Greeting</button>
-<p>
 <div id="accordion">
-  <h3>Title 1</h3>
-  <div>
-    <p>
-      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    </p>
-  </div>
-  <h3>Title 2</h3>
-  <div>
-    <p>
-      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    </p>
-  </div>
-  <h3>Title 3</h3>
-  <div>
-    <p>
-      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    </p>
-  </div>
-  <h3>Title 4</h3>
-  <div>
-    <p>
-      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-    </p>
+  <% @grouped_by_location.keys.each do |key| %>
+    <h3><b><%= key %></b></h3>
+    <div class="scrollableContainer">
+      <div class="scrollingArea">
+        <table class="shifts scrollable">
+          <thead>
+            <tr>
+              <th><div class="watch">Watch</div></th>
+              <th><div class="num">#</div></th>
+              <th><div class="name">Name</div></th>
+              <th><div class="area">Area</div></th>
+              <th><div class="off">Off</div></th>
+              <th><div class="hours">Hrs</div></th>
+              <th><div class="weekly">Wk</div></th>
+              <th><div class="sun">Sunday</div></th>
+              <th><div class="mon">Monday</div></th>
+              <th><div class="tue">Tuesday</div></th>
+              <th><div class="wed">Wednesday</div></th>
+              <th><div class="thu">Thursday</div></th>
+              <th><div class="fri">Friday</div></th>
+              <th><div class="sat">Saturday</div></th>
+            </tr>
+            <br>
+          </thead>
+          <tbody>
+            <% @shifts.sort_by_id.each do |shift| %>
+              <tr>
+                <%# Create an if/elseif that will reflect the different options to view %>
+                <% if shift.employment_status == "CC" && shift.detail_location == key %>
+                  <div id="weeklyShifts">
+                    <% if shift.watched == true %>
+                      <%# Make the following a partial view %>
+                      <td><div class="watch"><div class="glyphicon glyphicon-check"></div></div></td>
+                    <% else %>
+                      <td><div class="watch"><div class="glyphicon glyphicon-unchecked"></div></div></td>
+                    <% end %>
+                      <td><div class="num"><%= shift.id %></div></td>
+                    <% if User.find_by(shift_id: shift.id) != nil %>
+                      <td><div class="name"><%= User.find_by(shift_id: shift.id).first_name + " " + User.find_by(shift_id: shift.id).last_name %></div></td>
+                    <% else %>
+                      <td><div class="name"></div></td>
+                    <% end %>
+                    <td><div class="area"><%= shift.detail_location %></div></td>
+                    <td><div class="off"><%= shift.days_off %></div></td>
+                    <td><div class="hours"><%= shift.day_hours %></div></td>
+                    <td><div class="weekly"><%= shift.total_hours %></div></td>
+                    <% unless shift.days_off.include? "S" %>
+                      <td>
+                        <div class="sun">
+                          <%= shift.sun_start_time.strftime("%H%M") %>-<%= shift.sun_quit_time.strftime("%H%M") %>
+                          <b><%= shift.sun_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                      <td><div class="sun">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "M" %>
+                      <td>
+                        <div class="mon">
+                          <%= shift.mon_start_time.strftime("%H%M") %>-<%= shift.mon_quit_time.strftime("%H%M") %>
+                          <h style="color:rgb(255,0,0)"><%= shift.mon_location %>
+                        </div>
+                      </td>
+                    <% else %>
+                    <td><div class="mon">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "T" %>
+                      <td>
+                        <div class="tue">
+                          <%= shift.tue_start_time.strftime("%H%M") %>-<%= shift.tue_quit_time.strftime("%H%M") %>
+                          <b><%= shift.tue_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                      <td><div class="tue">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "W" %>
+                      <td>
+                        <div class="wed">
+                          <%= shift.wed_start_time.strftime("%H%M") %>-<%= shift.wed_quit_time.strftime("%H%M") %>
+                          <b><%= shift.wed_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                    <td><div class="wed">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "Q" %>
+                      <td>
+                        <div class="thu">
+                          <%= shift.thu_start_time.strftime("%H%M") %>-<%= shift.thu_quit_time.strftime("%H%M") %>
+                          <b><%= shift.thu_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                      <td><div class="thu">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "F" %>
+                      <td>
+                        <div class="fri">
+                          <%= shift.fri_start_time.strftime("%H%M") %>-<%= shift.fri_quit_time.strftime("%H%M") %>
+                          <b><%= shift.fri_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                      <td><div class="fri">off</div></td>
+                    <% end %>
+                    <% unless shift.days_off.include? "J" %>
+                      <td>
+                        <div class="sat">
+                          <%= shift.sat_start_time.strftime("%H%M") %>-<%= shift.sat_quit_time.strftime("%H%M") %>
+                          <b><%= shift.sat_location %></b>
+                        </div>
+                      </td>
+                    <% else %>
+                      <td><div class="sat">off</div></td>
+                    <% end %>
+                  </div>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  <% end %>
 </div>
 <p>
-<ul id="sortable">
-  <li class="item">Greta</li>
-  <li class="item">Tom</li>
-  <li class="item">Steve</li>
+<p>
+<!-- <ul id="sortable">
+  <li class="item"><%= Shift.first.detail_location %></li>
+  <li class="item"><%= Shift.last.detail_location %></li>
+</ul> -->
+
+<ul id="sortlist">
+  <li id="city_Vancouver">Vancouver</li>
+  <li id="city_Toronto">Toronto</li>
+  <li id="city_Montreal">Montreal</li>
+  <li id="city_Ottawa">Ottawa</li>
+  <li id="city_Calgary">Calgary</li>
+  <li id="city_Edmonton">Edmonton</li>
+  <li id="city_Winnipeg">Winnipeg</li>
 </ul>
+<!-- <p id="demo"></p> -->
+<p>
+<!-- <p id="text">Hello World!</p> -->
+<button id="myButton">Show</button>
