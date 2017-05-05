@@ -20,14 +20,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @shifts = Shift.all
+    @grouped_by_location = @shifts.group_by { |t| t.detail_location }
   end
 
   def update
     @user = User.find(params[:id])
-    
+
     if @user.update_attributes(user_params)
-      flash[:notice] = "User table was updated."
-      redirect_to edit_user_path
+      # flash[:notice] = "User table was updated."
+      redirect_to users_cc_path
     else
       flash[:error] = "Error saving entry"
       render :edit
