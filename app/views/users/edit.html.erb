@@ -89,6 +89,11 @@
   <br>
   <h4 style="display: inline">Phone #:  </h4><h3 style="display: inline; color:red"> (Phone number)</h3>
   <br>
+  <% if @number != nil %>
+    <%= @number %>
+  <% else %>
+    @number is nil
+  <% end %>
   <br>
   <input type="number_field" id="shiftEntry">
   <p></p>
@@ -115,10 +120,15 @@
       <br>
     </thead>
     <tbody>
-      <% @shifts.sort_by_id.each do |shift| %>
+      <% if @number != nil %>
+        <% shift = Shift.find_by(id: @number) %>
+      <% else %>
+        <% shift = Shift.find_by(id: 2) %>
+      <% end %>
+      <%# @shifts.sort_by_id.each do |shift| %>
         <tr>
           <%# Create an if/elseif that will reflect the different options to view %>
-          <% if shift.employment_status == "CC" && shift.id == 1 %>
+          <%# if shift.employment_status == "CC" && shift.id == @number %>
             <div id="weeklyShifts">
                 <td><div class="num"><%= shift.id %></div></td>
               <% if User.find_by(shift_id: shift.id) != nil %>
@@ -201,15 +211,20 @@
                 <td><div class="sat">off</div></td>
               <% end %>
             </div>
-          <% end %>
+          <%# end %>
         </tr>
-      <% end %>
+      <%# end %>
     </tbody>
   </table>
   <br>
+  <% if @number != nil %>
+    <%= @number %>
+  <% else %>
+    @number is nil
+  <% end %>
   <br>
   <%= form_for @user do |f| %>
-    <%= f.number_field :shift_id, class: 'number_field', placeholder: "Shift #" %>
+    <%#= f.number_field :shift_id, class: 'number_field', placeholder: "Shift #" %>
     <p>
     <div class="form-group">
       <%= f.submit "Accept", class: 'btn btn-success' %>
