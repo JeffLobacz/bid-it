@@ -1,6 +1,6 @@
 class Shift < ActiveRecord::Base
   # belongs_to :user
 
-  # scope :sort_by_days_off, -> { order(days_off: :asc) }
+  scope :sort_by_id, -> { order(id: :asc) }
 
 end

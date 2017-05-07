@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'workareas/index'
-
-  get 'workareas/show'
-
   get 'users/cc'
   get 'users/ft'
   get 'users/pt'
@@ -22,7 +18,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :show, :edit, :update]
 
-  resources :shifts, only: [:index, :new, :create]
+  resources :shifts, only: [:index, :new, :create, :show]
+
+  resources :workareas, only: [:index, :show, :new, :create]
 
 
 

@@ -11,6 +11,12 @@ class ShiftsController < ApplicationController
   def create
   end
 
+  def show
+    @shifts = Shift.all
+    @grouped_by_location = @shifts.group_by { |t| t.detail_location }
+
+  end
+
   def update
   end
 
