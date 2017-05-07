@@ -52,38 +52,39 @@
   <% waiting_on_bidder = false %>
   <%# current_bidder = 0 %>
   <% @users.sort_by_seniority.each do |user| %>
-    <tr>
+    <tr id="test">
       <% if user.employment_status == "CC" %>
         <% bid_number += 1 %>
-        <td><%= bid_number %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.employee_number %></td>
-        <td><%= user.seniority.strftime("%m-%d-%Y") %></td>
+        <div>
+          <td><%= bid_number %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.employee_number %></td>
+          <td><%= user.seniority.strftime("%m-%d-%Y") %></td>
 
-        <% if user.qualification != nil && user.qualification != "select" %>
-          <td><%= user.qualification %></td>
-        <% else %>
-          <td>--</td>
-        <% end %>
+          <% if user.qualification != nil && user.qualification != "select" %>
+            <td><%= user.qualification %></td>
+          <% else %>
+            <td>--</td>
+          <% end %>
 
-        <% if bid_number == 1 %>
-          <% bid_time = bidding_begins %>
-        <% else %>
-          <% bid_time += 5.minutes %>
-        <% end %>
-        <td><%= bid_time.strftime("%a, %m-%d %H:%M") %></td>
+          <% if bid_number == 1 %>
+            <% bid_time = bidding_begins %>
+          <% else %>
+            <% bid_time += 5.minutes %>
+          <% end %>
+          <td><%= bid_time.strftime("%a, %m-%d %H:%M") %></td>
 
-        <% if user.shift_id != nil && waiting_on_bidder == false %>
-          <td><%= user.shift_id %></td>
-        <% elsif user.shift_id == nil && waiting_on_bidder == false %>
-          <td><%= link_to "Bid", edit_user_path(id: user.id), class: 'btn btn-success' %></td>
-          <% waiting_on_bidder = true %>
-          <%# current_bidder = bid_number %>
-        <% elsif waiting_on_bidder == true %>
-          <td>--</td>
-        <% end %>
-
+          <% if user.shift_id != nil && waiting_on_bidder == false %>
+            <td><%= user.shift_id %></td>
+          <% elsif user.shift_id == nil && waiting_on_bidder == false %>
+            <td><%= link_to "Bid", edit_user_path(id: user.id), class: 'btn btn-success' %></td>
+            <% waiting_on_bidder = true %>
+            <%# current_bidder = bid_number %>
+          <% elsif waiting_on_bidder == true %>
+            <td>--</td>
+          <% end %>
+        </div>
       <% end %>
     </tr>
   <% end %>

@@ -6,8 +6,4 @@
   #   window.history.back();
   # }
 $(document).on "turbolinks:load", ->
-  $("#shiftEntry").focus()
-  $("#showShift").click ->
-    @number = document.getElementById("shiftEntry").value;
-    alert (@number)
-    # alert ("<%= Shift.find_by(id: 2).detail_location %>");
+  $( "#test" ).sortable();

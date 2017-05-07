@@ -4,3 +4,4 @@ $(document).on "turbolinks:load", ->
     collapsible: true
   });
   $( "#sortable" ).sortable();
+  $( "tbody" ).sortable();

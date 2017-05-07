@@ -106,8 +106,8 @@
           <th><div class="sat">Saturday</div></th>
         </tr>
       </thead>
-      <tbody>
-        <div id="weeklyShifts">
+      <tbody id="test">
+        <div>
           <% @shifts.sort_by_id.each do |shift| %>
             <%= render partial: 'shifts/form', locals: { shift: shift } %>
           <% end %>
