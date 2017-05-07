@@ -1,0 +1,21 @@
+<%= form_for @user do |f| %>
+  <p>
+  <%= f.text_field :first_name, class: 'form-control', placeholder: "First name" %>
+  <p>
+  <%= f.text_field :last_name, class: 'form-control', placeholder: "Last name" %>
+  <p>
+  <%= f.text_field :employee_number, class: 'form-control', placeholder: "user number" %>
+  <p>
+    <%= f.label :employment_status %>:
+    <%= f.select :employment_status, ["CC", "FT", "PT"] %>
+  <p>
+  <b>Occupational</b> <%= f.label :seniority %>:
+  <%= f.date_field :seniority %>
+  <p>
+  <%= f.label :qualification %>:
+  <%= f.select :qualification, ["select", "Exp"] %>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
+<% end %>
