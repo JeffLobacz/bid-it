@@ -54,8 +54,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:employment_status, :first_name, :last_name, :employee_number, :seniority, :qualification, :shift_id)
   end
 
-  def shift_params
-    params.require(:shift).permit(:last_name)
-  end
-
 end

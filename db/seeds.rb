@@ -110,16 +110,16 @@ start = Time.new(2016, 10, 1, 21, 0, 0)
 end
 unpaid_hours = 0.5
 locations = %w[40 42A 42B 46A 46B 46C 48A 48B 49B 49A 47B 47A 45 43 41]
-number_of_cc_shifts.times do
 
-weekly_hours = 0
-days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
-if days_off_number == 2
-  weekend = two_days_off_array[rand(two_days_off_array.length)]
-  paid_hours = 8.0
-elsif days_off_number == 3
-  weekend = three_days_off_array[rand(three_days_off_array.length)]
-  paid_hours = 10
+number_of_cc_shifts.times do
+  weekly_hours = 0
+  days_off_number = number_of_days_off_array[rand(number_of_days_off_array.length)]
+  if days_off_number == 2
+    weekend = two_days_off_array[rand(two_days_off_array.length)]
+    paid_hours = 8.0
+  elsif days_off_number == 3
+    weekend = three_days_off_array[rand(three_days_off_array.length)]
+    paid_hours = 10
 end
 
 unless weekend.include? "S"
